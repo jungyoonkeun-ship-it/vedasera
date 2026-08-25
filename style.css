@@ -112,3 +112,46 @@ footer{padding:6vw 5vw 3vw;background:var(--paper);border-top:1px solid var(--li
 .hero .hero-logo{
   display:none !important;
 }
+
+
+/* v7.3 fixes */
+
+/* Approved hero artwork already contains the VEDA SERA lockup.
+   Never place a second HTML logo/copy layer over it. */
+.hero .hero-brand,
+.hero .hero-overlay{
+  display:none !important;
+}
+
+/* Declaration starts directly with the headline. */
+.statement{
+  padding-top:8vw;
+}
+.statement > h1{
+  margin-top:0;
+}
+
+/* Prevent any seam/line around split media. */
+.media{
+  border:0 !important;
+  outline:0 !important;
+  line-height:0;
+}
+.media img{
+  display:block;
+  border:0 !important;
+  outline:0 !important;
+}
+
+/* Final artwork is a single fused image with no HTML overlay. */
+.final.final-fused{
+  display:block;
+  height:auto !important;
+  line-height:0;
+}
+.final.final-fused > img{
+  display:block;
+  width:100%;
+  height:auto !important;
+  object-fit:contain !important;
+}
