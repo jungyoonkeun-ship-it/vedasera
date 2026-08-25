@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="VEDA SERA — curating beautiful minds. Handwoven cotton yoga mats and objects for modern ritual.">
   <meta name="theme-color" content="#eee6de">
   <title>VEDA SERA — curating beautiful minds</title>
@@ -12,95 +12,129 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header class="site-header">
-    <a href="#top" class="brand" aria-label="VEDA SERA home">
-      <img src="assets/logo.png" alt="VEDA SERA">
-    </a>
-    <nav>
-      <a href="#story">STORY</a>
-      <a href="#product">THE MAT</a>
-      <a href="#philosophy">PHILOSOPHY</a>
-      <a href="#weave">THE WEAVE</a>
-      <a href="#material">MATERIAL</a>
-      <a href="https://smartstore.naver.com/vedasera" target="_blank" rel="noopener noreferrer">SHOP</a>
-    </nav>
-  </header>
 
-  <main id="top">
+<header class="site-header">
+  <a class="brand" href="#top" aria-label="VEDA SERA home">
+    <img src="assets/logo.png" alt="VEDA SERA">
+  </a>
+  <nav>
+    <a href="#story">STORY</a>
+    <a href="#mat">THE MAT</a>
+    <a href="#philosophy">PHILOSOPHY</a>
+    <a href="#material">MATERIAL</a>
+    <a href="https://smartstore.naver.com/vedasera" target="_blank" rel="noopener noreferrer">SHOP</a>
+  </nav>
+</header>
 
-    <!-- Exact approved HERO image -->
-    <section class="image-section hero">
-      <img src="assets/hero.png" alt="VEDA SERA">
-    </section>
+<main id="top">
 
-    <!-- Only this section is HTML typography so it stays responsive and never breaks -->
-    <section class="declaration" id="story">
-      <div class="declaration-index">
-        <div><span>01</span><b>MOVEMENT</b></div>
-        <div><span>02</span><b>REST</b></div>
-        <div><span>03</span><b>RITUAL</b></div>
-      </div>
-
-      <h1>
-        Objects for movement,<br>
-        <em>rest,</em><br>
-        and the rituals in between.
-      </h1>
-    </section>
-
-    <!-- Exact approved images, no crop/no regenerated content -->
-    <section class="image-section" id="product">
-      <img src="assets/product-intro.png" alt="VEDA SERA Handwoven Cotton Yoga Mat">
-    </section>
-
-    <section class="image-section" id="philosophy">
-      <img src="assets/philosophy.png" alt="VEDA SERA philosophy">
-    </section>
-
-    <section class="image-section" id="weave">
-      <img src="assets/weave.png" alt="VEDA SERA handwoven process">
-    </section>
-
-    <section class="image-section" id="material">
-      <img src="assets/material.png" alt="VEDA SERA cotton material">
-    </section>
-
-    <!-- Final approved image is one fused image and the whole image is clickable -->
-    <section class="image-section final-shop">
-      <a
-        href="https://smartstore.naver.com/vedasera"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Shop VEDA SERA on Naver Smart Store"
-      >
-        <img src="assets/shop-final.png" alt="Made to live with — shop VEDA SERA">
-      </a>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="footer-brand">
+  <!-- HERO: actual VEDA SERA product photo -->
+  <section class="hero">
+    <img src="assets/hero-real.jpg" alt="VEDA SERA handwoven cotton yoga mat">
+    <div class="hero-overlay"></div>
+    <div class="hero-brand">
       <img src="assets/logo.png" alt="VEDA SERA">
       <p>curating beautiful minds</p>
     </div>
+  </section>
 
-    <div class="footer-nav">
-      <a href="#story">STORY</a>
-      <a href="#product">THE MAT</a>
-      <a href="#philosophy">PHILOSOPHY</a>
-      <a href="#weave">THE WEAVE</a>
-      <a href="#material">MATERIAL</a>
-      <a href="https://smartstore.naver.com/vedasera" target="_blank" rel="noopener noreferrer">SHOP</a>
+  <!-- Fixed warm beige declaration -->
+  <section class="declaration" id="story">
+    <div class="declaration-index">
+      <div><span>01</span><b>MOVEMENT</b></div>
+      <div><span>02</span><b>REST</b></div>
+      <div><span>03</span><b>RITUAL</b></div>
     </div>
+    <h1>
+      Objects for movement,<br>
+      <em>rest,</em><br>
+      and the rituals in between.
+    </h1>
+  </section>
 
-    <div class="footer-meta">
-      © <span id="year"></span> VEDA SERA · SEOUL, KOREA
+  <!-- Product: exact real mat -->
+  <section class="split" id="mat">
+    <div class="photo photo-product">
+      <img src="assets/product-real.jpg" alt="VEDA SERA handwoven cotton yoga mat">
     </div>
-  </footer>
+    <div class="copy">
+      <p class="eyebrow">THE HANDWOVEN COTTON YOGA MAT</p>
+      <h2>Made to<br>live with.</h2>
+      <div class="rule"></div>
+      <p>Handwoven in India<br>100% Cotton</p>
+      <p class="body-copy">A tactile everyday object for movement, rest and modern ritual.</p>
+      <a class="text-link" href="https://smartstore.naver.com/vedasera" target="_blank" rel="noopener noreferrer">SHOP THE COLLECTION →</a>
+    </div>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- Philosophy: actual product photo reused with exact pattern -->
+  <section class="split reverse" id="philosophy">
+    <div class="photo philosophy-photo">
+      <img src="assets/hero-real.jpg" alt="VEDA SERA mat in an everyday interior">
+    </div>
+    <div class="copy">
+      <p class="eyebrow">PHILOSOPHY</p>
+      <h2>curating<br>beautiful minds</h2>
+      <div class="rule"></div>
+      <p class="body-copy">We believe the objects around us quietly shape the way we live. Created to bring intention and beauty into everyday life.</p>
+    </div>
+  </section>
+
+  <!-- Material: exact real grey and green mats -->
+  <section class="split" id="material">
+    <div class="photo material-photo">
+      <img src="assets/material-real.jpg" alt="VEDA SERA grey and green cotton yoga mats">
+    </div>
+    <div class="copy">
+      <p class="eyebrow">MATERIAL</p>
+      <h2>Natural by nature.<br>Distinct by touch.</h2>
+      <div class="rule"></div>
+      <p class="body-copy">100% cotton, chosen for its visible texture, tactile character and quiet irregularity.</p>
+    </div>
+  </section>
+
+  <!-- Detail: exact real pattern / anti-skid reference -->
+  <section class="split reverse">
+    <div class="photo detail-photo">
+      <img src="assets/detail-real.png" alt="Close detail of VEDA SERA handwoven cotton mat">
+    </div>
+    <div class="copy">
+      <p class="eyebrow">THE DETAIL</p>
+      <h2>Quiet texture.<br>Everyday function.</h2>
+      <div class="rule"></div>
+      <p class="body-copy">The woven cotton surface carries the character of handcraft, finished for everyday practice.</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA: actual mat + text visually fused over one image -->
+  <a class="final-cta" href="https://smartstore.naver.com/vedasera" target="_blank" rel="noopener noreferrer" aria-label="Shop VEDA SERA on Naver Smart Store">
+    <img src="assets/hero-real.jpg" alt="VEDA SERA Handwoven Cotton Yoga Mat">
+    <div class="final-shade"></div>
+    <div class="final-copy">
+      <p>THE HANDWOVEN COTTON YOGA MAT</p>
+      <h2>Made to live with.</h2>
+      <span>SHOP THE COLLECTION →</span>
+    </div>
+  </a>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <img src="assets/logo.png" alt="VEDA SERA">
+    <p>curating beautiful minds</p>
+  </div>
+  <div class="footer-nav">
+    <a href="#story">STORY</a>
+    <a href="#mat">THE MAT</a>
+    <a href="#philosophy">PHILOSOPHY</a>
+    <a href="#material">MATERIAL</a>
+    <a href="https://smartstore.naver.com/vedasera" target="_blank" rel="noopener noreferrer">SHOP</a>
+  </div>
+  <div class="footer-meta">© <span id="year"></span> VEDA SERA · SEOUL, KOREA</div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,21 +1,17 @@
-# VEDA SERA v5 STABLE
+# VEDA SERA v6 — REAL PRODUCT
 
-This is the stable image-based version.
+This version fixes the two requested issues:
 
-Important:
-- Exact approved images are used unchanged.
-- Images are not regenerated, recolored, or cropped.
-- Only the `Objects for movement / rest / ritual` section is rendered as HTML typography for responsive stability.
-- The official VEDA SERA logo is used as an image asset.
-- The final approved `Made to live with.` artwork is used as one fused image.
-- Clicking the final image opens:
-  https://smartstore.naver.com/vedasera
+1. The `Objects for movement / rest / ritual` section is explicitly locked to the same warm beige (#eee6de) as the rest of the site.
+2. Every yoga-mat image now uses the user's actual VEDA SERA product photos. No AI-generated mat pattern is used anywhere in this package.
 
-## GitHub update
+The final `Made to live with.` section also uses the actual product photo, with live HTML typography over the image so the image and message feel integrated.
+
+## GitHub upload
 Replace only:
 - index.html
 - style.css
 - script.js
 - assets/
 
-DO NOT replace or delete your existing CNAME file.
+Keep the existing CNAME file unchanged.
