@@ -1,12 +1,21 @@
-# VEDA SERA GitHub Pages site
+# VEDA SERA Website v2
 
-Upload all files in this folder to the root of your GitHub repository.
+## GitHub update
+Upload/replace these items in the repository root:
 
-Then go to **Settings → Pages**:
-- Source: Deploy from a branch
-- Branch: main
-- Folder: / (root)
+- `index.html`
+- `style.css`
+- `script.js`
+- the entire `assets` folder
 
-To connect `vedasera.com`, first enable GitHub Pages, then add the custom domain in **Settings → Pages** and update GoDaddy DNS as GitHub instructs.
+The last image and all SHOP links point to:
 
-To add your Smart Store link, edit `index.html` and replace the `href="#"` on **SHOP THE COLLECTION** with your store URL.
+http://smartstore.naver.com/vedasera
+
+## GitHub Pages
+Keep the current Pages setting:
+- Deploy from a branch
+- main
+- /(root)
+
+Once committed, GitHub Pages will redeploy automatically.

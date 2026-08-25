@@ -1,6 +1,23 @@
-const h=document.getElementById('header');
-addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>70));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-document.getElementById('year').textContent=new Date().getFullYear();
-document.getElementById('shopLink').addEventListener('click',e=>{if(e.currentTarget.getAttribute('href')==='#'){e.preventDefault();alert('Add your Naver Smart Store URL here.')}});
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const menu = document.querySelector(".menu");
+const mobile = document.querySelector(".mobile-nav");
+menu.addEventListener("click", () => {
+  const open = mobile.classList.toggle("open");
+  menu.setAttribute("aria-expanded", open ? "true" : "false");
+  mobile.setAttribute("aria-hidden", open ? "false" : "true");
+});
+
+mobile.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+  mobile.classList.remove("open");
+  menu.setAttribute("aria-expanded","false");
+  mobile.setAttribute("aria-hidden","true");
+}));
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add("visible");
+  });
+},{threshold:.08});
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
