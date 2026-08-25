@@ -1,18 +1,21 @@
-# VEDA SERA Website v4
+# VEDA SERA v5 STABLE
 
-This package fixes:
-- one consistent warm beige background across all text sections
-- one consistent serif system for all editorial headings
-- lighter, consistent heading weight throughout
-- HTML text over cropped photography instead of inconsistent text baked into section images
-- final approved `Made to live with.` artwork kept as one fused image
-- final artwork links directly to the VEDA SERA Naver Smart Store
+This is the stable image-based version.
 
-## Upload to GitHub
-Replace:
+Important:
+- Exact approved images are used unchanged.
+- Images are not regenerated, recolored, or cropped.
+- Only the `Objects for movement / rest / ritual` section is rendered as HTML typography for responsive stability.
+- The official VEDA SERA logo is used as an image asset.
+- The final approved `Made to live with.` artwork is used as one fused image.
+- Clicking the final image opens:
+  https://smartstore.naver.com/vedasera
+
+## GitHub update
+Replace only:
 - index.html
 - style.css
 - script.js
 - assets/
 
-Keep your existing CNAME file unchanged.
+DO NOT replace or delete your existing CNAME file.
