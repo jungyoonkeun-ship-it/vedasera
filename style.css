@@ -281,3 +281,29 @@ footer{padding:6vw 5vw 3vw;background:var(--paper);border-top:1px solid var(--li
     line-height:1.02 !important;
   }
 }
+
+
+/* Philosophy artwork replaces the former statement section. */
+.anchor-target{
+  display:block;
+  position:relative;
+  top:0;
+}
+.philosophy-at-story{
+  width:100%;
+  margin:0;
+  padding:0;
+  line-height:0;
+  background:#eee6de;
+  border:0;
+  outline:0;
+}
+.philosophy-at-story img{
+  display:block;
+  width:100%;
+  height:auto;
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+}

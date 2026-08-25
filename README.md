@@ -1,17 +1,14 @@
-# VEDA SERA v7.6 — Luxury Statement Typography
+# VEDA SERA — Philosophy in Former Statement Slot
 
-Keeps all v7.5 content and layout.
+Base: VEDA_SERA_GitHub_v7_6_LUXURY_TYPE(2)
 
-Updated only the statement:
-"Objects for movement, rest, and the rituals in between."
-
-Changes:
-- Reduced headline scale by roughly 25–30%.
-- Switched the statement font to Bodoni Moda for a more refined fashion-editorial feel.
-- Kept `rest,` italic.
-- Increased surrounding whitespace and softened letter spacing.
-- Mobile scale is also reduced for a calmer, more premium look.
+Only requested changes:
+- Completely removed the “Objects for movement, rest, and the rituals in between.” section.
+- Placed the exact uploaded `Brand Philosophy(1).png` in that same position.
+- Removed the duplicate Philosophy section from the bottom of the page.
+- All other sections, images, order, fonts, colors, links, and styling are left as in the supplied base package.
+- Existing GitHub CNAME should remain unchanged; this package intentionally does not include a CNAME file.
 
 GitHub upload:
-Replace index.html, style.css, script.js, and assets/.
-Keep the existing CNAME unchanged.
+Replace `index.html`, `style.css`, `script.js`, and `assets/`.
+Do not delete or replace your current `CNAME`.
