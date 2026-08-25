@@ -307,3 +307,45 @@ footer{padding:6vw 5vw 3vw;background:var(--paper);border-top:1px solid var(--li
   border:0;
   outline:0;
 }
+
+
+/* ===== Header fix ===== */
+/* Keep the menu bar fixed at the top on desktop and mobile. */
+.header{
+  position:sticky !important;
+  top:0 !important;
+  left:0;
+  right:0;
+  z-index:1000 !important;
+  background:#eee6de !important;
+}
+
+/* Restore a stronger VEDA SERA logo presence in the menu bar. */
+.header .logo img,
+.logo img{
+  width:148px !important;
+  height:auto !important;
+  max-width:none !important;
+}
+
+/* Offset anchor jumps so fixed/sticky header does not cover section tops. */
+html{
+  scroll-padding-top:70px;
+}
+
+@media(max-width:820px){
+  .header{
+    position:sticky !important;
+    top:0 !important;
+    z-index:1000 !important;
+  }
+
+  .header .logo img,
+  .logo img{
+    width:122px !important;
+  }
+
+  html{
+    scroll-padding-top:60px;
+  }
+}
