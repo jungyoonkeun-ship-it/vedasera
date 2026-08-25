@@ -1,21 +1,15 @@
-# VEDA SERA Website v2
+# VEDA SERA Website — Final GitHub Package
 
-## GitHub update
-Upload/replace these items in the repository root:
+Upload the contents of this folder to the root of the GitHub repository.
 
-- `index.html`
-- `style.css`
-- `script.js`
-- the entire `assets` folder
+Required root files:
+- index.html
+- style.css
+- script.js
+- CNAME
+- assets/
 
-The last image and all SHOP links point to:
+The final full-width `Made to live with.` image is clickable and opens:
+https://smartstore.naver.com/vedasera
 
-http://smartstore.naver.com/vedasera
-
-## GitHub Pages
-Keep the current Pages setting:
-- Deploy from a branch
-- main
-- /(root)
-
-Once committed, GitHub Pages will redeploy automatically.
+The logo is loaded as an image asset (`assets/logo.png`) rather than recreated with a font.
