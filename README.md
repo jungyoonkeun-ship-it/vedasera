@@ -1,15 +1,18 @@
-# VEDA SERA Website — Final GitHub Package
+# VEDA SERA Website v4
 
-Upload the contents of this folder to the root of the GitHub repository.
+This package fixes:
+- one consistent warm beige background across all text sections
+- one consistent serif system for all editorial headings
+- lighter, consistent heading weight throughout
+- HTML text over cropped photography instead of inconsistent text baked into section images
+- final approved `Made to live with.` artwork kept as one fused image
+- final artwork links directly to the VEDA SERA Naver Smart Store
 
-Required root files:
+## Upload to GitHub
+Replace:
 - index.html
 - style.css
 - script.js
-- CNAME
 - assets/
 
-The final full-width `Made to live with.` image is clickable and opens:
-https://smartstore.naver.com/vedasera
-
-The logo is loaded as an image asset (`assets/logo.png`) rather than recreated with a font.
+Keep your existing CNAME file unchanged.
