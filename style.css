@@ -228,3 +228,24 @@ footer{padding:6vw 5vw 3vw;background:var(--paper);border-top:1px solid var(--li
 .statement{
   background:#eee6de !important;
 }
+
+
+/* ===== v7.5 restored approved Philosophy ===== */
+.philosophy-final{
+  width:100%;
+  margin:0;
+  padding:0;
+  line-height:0;
+  background:#eee6de;
+  border:0;
+  outline:0;
+}
+.philosophy-final img{
+  display:block;
+  width:100%;
+  height:auto;
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+}

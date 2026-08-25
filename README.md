@@ -1,34 +1,26 @@
-# VEDA SERA v7.4 — All 5 Fixes
+# VEDA SERA v7.5 — Philosophy Restored
 
-This package explicitly applies the five requested corrections:
+Keeps all v7.4 fixes and restores the previously approved VEDA SERA brand-philosophy artwork.
 
-1. HERO
-   - Uses the approved Hero Image (1).
-   - Removes every HTML hero logo/copy overlay.
-   - Result: only the single VEDA SERA lockup that is already inside the approved hero artwork.
+Final flow:
+Hero
+→ Objects for movement, rest, and the rituals in between.
+→ The Mat
+→ The Weave
+→ Material
+→ Grounded in the everyday
+→ Made to live with. / Shop the Collection
+→ PHILOSOPHY (final section)
 
-2. STATEMENT
-   - Removes the small MOVEMENT / REST / RITUAL labels completely.
+The restored Philosophy section uses the approved fused artwork:
+- warm beige text panel on the left
+- PHILOSOPHY / curating beautiful minds
+- original philosophy copy
+- dark candlelit lifestyle scene on the right
+- woman seated on the mat with surrounding ritual objects
 
-3. EVERYDAY RITUAL
-   - Crops out the baked-in white strip at the top of the image.
-   - CSS also removes any border/seam around the image.
+No other v7.4 corrections were reverted.
 
-4. FINAL CTA
-   - Uses the approved final artwork with only:
-     Made to live with.
-     SHOP THE COLLECTION →
-   - No VEDA SERA logo is overlaid.
-   - The whole image links to Naver Smart Store.
-
-5. PHILOSOPHY
-   - Moved to the final editorial section, immediately before the closing CTA.
-
-## GitHub upload
-Replace:
-- index.html
-- style.css
-- script.js
-- assets/
-
+GitHub upload:
+Replace index.html, style.css, script.js, and assets/.
 Keep the existing CNAME unchanged.
