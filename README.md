@@ -1,25 +1,16 @@
-# VEDA SERA v7.5 — Philosophy Restored
+# VEDA SERA v7.6 — Luxury Statement Typography
 
-Keeps all v7.4 fixes and restores the previously approved VEDA SERA brand-philosophy artwork.
+Keeps all v7.5 content and layout.
 
-Final flow:
-Hero
-→ Objects for movement, rest, and the rituals in between.
-→ The Mat
-→ The Weave
-→ Material
-→ Grounded in the everyday
-→ Made to live with. / Shop the Collection
-→ PHILOSOPHY (final section)
+Updated only the statement:
+"Objects for movement, rest, and the rituals in between."
 
-The restored Philosophy section uses the approved fused artwork:
-- warm beige text panel on the left
-- PHILOSOPHY / curating beautiful minds
-- original philosophy copy
-- dark candlelit lifestyle scene on the right
-- woman seated on the mat with surrounding ritual objects
-
-No other v7.4 corrections were reverted.
+Changes:
+- Reduced headline scale by roughly 25–30%.
+- Switched the statement font to Bodoni Moda for a more refined fashion-editorial feel.
+- Kept `rest,` italic.
+- Increased surrounding whitespace and softened letter spacing.
+- Mobile scale is also reduced for a calmer, more premium look.
 
 GitHub upload:
 Replace index.html, style.css, script.js, and assets/.
