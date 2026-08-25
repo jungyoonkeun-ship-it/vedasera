@@ -76,3 +76,39 @@ footer{padding:6vw 5vw 3vw;background:var(--paper);border-top:1px solid var(--li
   .final{height:64vh}.final-copy{left:20px;right:20px}
   footer{padding:16vw 20px 8vw}
 }
+
+
+/* v7.1: final approved artwork already contains all copy */
+.final.final-fused{
+  height:auto;
+  background:#18130f;
+}
+.final.final-fused > img{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+.final.final-fused .final-shade,
+.final.final-fused .final-copy{
+  display:none !important;
+}
+
+
+/* v7.2 — approved hero artwork */
+.hero{
+  background:#e9dfd3;
+}
+.hero > img,
+.hero img.hero-image{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  display:block;
+}
+/* The approved hero artwork already includes its centered VEDA SERA lockup. */
+.hero .hero-copy,
+.hero .hero-content,
+.hero .hero-overlay,
+.hero .hero-logo{
+  display:none !important;
+}

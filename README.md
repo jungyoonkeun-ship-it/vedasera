@@ -1,19 +1,20 @@
-# VEDA SERA v7 — Corrected Product Lifestyle
+# VEDA SERA v7.2 — Final Hero + CTA Patch
 
-This package uses the newly generated lifestyle imagery where the yoga mat was rebuilt from the user's real product references:
-- charcoal solid end panels
-- marled charcoal / beige woven center
-- beige horizontal decorative bands
-- no invented diamond or Persian-rug motifs
+This package keeps the existing website flow and styling and changes only the approved items:
 
-The philosophy image is cropped to avoid showing an older mismatched mat.
-The weave image is tightly cropped to emphasize hands and loom rather than an invented full mat.
+1. Hero restored to the approved bright VEDA SERA room image (`assets/hero.png`).
+2. Existing official high-resolution VEDA SERA logo asset retained for site UI/header usage.
+3. Final CTA uses the approved woven close-up artwork with:
+   - Made to live with.
+   - SHOP THE COLLECTION →
+4. The final CTA remains clickable to the VEDA SERA Naver Smart Store.
+5. Duplicate HTML overlays on the final CTA are removed.
 
-## GitHub upload
-Replace:
+## Upload
+Upload/replace:
 - index.html
 - style.css
 - script.js
 - assets/
 
-Keep the existing CNAME file unchanged.
+Do NOT delete or replace your existing GitHub `CNAME` file.
