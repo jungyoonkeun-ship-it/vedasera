@@ -1,0 +1,4 @@
+VEDA SERA mobile update
+- Enlarged official logo in top header
+- Sticky image treatment on mobile product/material sections
+- Refined hero sizing, typography, spacing, and footer
