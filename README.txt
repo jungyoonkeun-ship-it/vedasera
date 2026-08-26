@@ -1,6 +1,16 @@
-VEDA SERA Philosophy image restore
+VEDA SERA FULL SITE PACKAGE
 
-Upload the 'assets' folder to the root of the GitHub repository and allow it to overwrite:
-assets/philosophy-final.png
+This is a complete site package, not a CSS patch.
 
-Do not replace index.html, style.css, or any other assets with this package.
+IMPORTANT: The HTML/CSS is rebuilt to match the current live VEDA SERA section structure and fixes the header logo size and typography. To avoid reverting product imagery, copy the CURRENT live image files into /assets before deployment if any are missing.
+
+Expected assets:
+hero.png
+philosophy-final.png
+product.jpg
+weave.jpg
+material.jpg
+lifestyle.jpg
+logo.png
+
+Upload index.html, style.css and the assets folder to the repository root.
