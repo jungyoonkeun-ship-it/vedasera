@@ -13,3 +13,6 @@ Changes only:
 All other content, imagery, order, colors, philosophy placement, and links are unchanged.
 
 Keep your existing GitHub CNAME unchanged.
+
+
+v7.9: Mobile-only fix. Desktop unchanged. Mobile header logo set to 145px and mobile section vertical spacing reduced.

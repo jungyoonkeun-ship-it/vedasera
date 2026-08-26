@@ -350,37 +350,67 @@ html{
   }
 }
 
-/* ===== v7.8 MOBILE-ONLY overrides ===== */
-@media(max-width:820px){
-  /* Mobile header logo: larger, desktop remains untouched at 148px */
-  .header .logo img,
-  .logo img{
+/* ===== v7.9 MOBILE ONLY OVERRIDE =====
+   Desktop styles above are intentionally untouched.
+*/
+@media (max-width:820px){
+
+  /* Header: keep desktop at 148px; enlarge ONLY the mobile header logo. */
+  .header .logo img{
     width:145px !important;
     height:auto !important;
     max-width:none !important;
   }
 
-  /* Tighten mobile vertical rhythm only */
-  .statement{
-    padding:11vw 20px 12vw !important;
-  }
+  /* Remove desktop minimum heights on stacked mobile sections. */
   .split,
   .split.reverse{
     min-height:0 !important;
+    grid-template-columns:1fr !important;
   }
+
   .media{
     min-height:0 !important;
     height:auto !important;
   }
+
   .media img{
     width:100% !important;
     height:auto !important;
     object-fit:cover !important;
   }
+
+  /* Tighten vertical spacing between mobile image/text sections. */
   .copy{
-    padding:11vw 20px !important;
+    padding:10vw 20px !important;
   }
+
+  .eyebrow{
+    margin-bottom:20px !important;
+  }
+
+  .rule{
+    margin:26px 0 !important;
+  }
+
+  .body{
+    margin-top:18px !important;
+  }
+
+  .cta{
+    margin-top:26px !important;
+  }
+
+  .features{
+    margin-top:30px !important;
+  }
+
   footer{
     padding:11vw 20px 7vw !important;
   }
+
+  .footer-links{
+    margin:32px 0 !important;
+  }
 }
+
