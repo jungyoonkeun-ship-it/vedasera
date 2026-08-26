@@ -1,0 +1,9 @@
+Based directly on the uploaded vedasera-main.zip.
+Only style.css was edited.
+- No image paths changed.
+- No images changed.
+- No copy/content changed.
+- No section order/layout changed.
+- Desktop typography enlarged.
+- Header logo enlarged.
+- Mobile serif standardized to Georgia to prevent iOS font substitution/corruption.
