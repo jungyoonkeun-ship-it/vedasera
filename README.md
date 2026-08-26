@@ -1,15 +1,12 @@
-# VEDA SERA — Header Fix
+# VEDA SERA GitHub Pages site
 
-Base:
-VEDA_SERA_GitHub_v7_6_PHILOSOPHY_IN_STATEMENT_SLOT
+Upload all files in this folder to the root of your GitHub repository.
 
-Changes only:
-- Restored a larger VEDA SERA logo in the top menu bar.
-  - Desktop: 148px wide
-  - Mobile: 122px wide
-- Made the top menu bar sticky so it stays at the top while scrolling.
-- Added scroll padding so anchor navigation is not hidden behind the header.
+Then go to **Settings → Pages**:
+- Source: Deploy from a branch
+- Branch: main
+- Folder: / (root)
 
-All other content, imagery, order, colors, philosophy placement, and links are unchanged.
+To connect `vedasera.com`, first enable GitHub Pages, then add the custom domain in **Settings → Pages** and update GoDaddy DNS as GitHub instructs.
 
-Keep your existing GitHub CNAME unchanged.
+To add your Smart Store link, edit `index.html` and replace the `href="#"` on **SHOP THE COLLECTION** with your store URL.
