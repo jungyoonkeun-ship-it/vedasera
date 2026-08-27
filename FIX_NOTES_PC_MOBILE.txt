@@ -1,0 +1,6 @@
+Requested fixes:
+1. PC: Made to live with. moved to the final section before footer.
+2. PC: Product banner and header SHOP link -> http://smartstore.naver.com/vedasera
+3. PC: Header logo and menu enlarged.
+4. Mobile: Header is sticky and shows logo only; menu hidden.
+5. Existing locked images and other section content preserved.
