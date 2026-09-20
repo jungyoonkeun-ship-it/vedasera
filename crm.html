@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VEDA SERA — Order CRM</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="crm.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="assets/logo.png" alt="VEDA SERA"></a>
+  <nav><a href="shop.html">SHOP</a></nav>
+</header>
+
+<main class="crm">
+  <section id="login-view">
+    <span class="eyebrow">CRM</span>
+    <h1>Order management</h1>
+    <p class="muted">Sign in with your CRM account to view and manage orders.</p>
+    <div class="setup-warn" id="crm-setup-warn" hidden>
+      Supabase isn't connected yet — see <code>SETUP.md</code> step 2.
+    </div>
+    <form id="login-form">
+      <label>Email<input type="email" id="login-email" required autocomplete="username"></label>
+      <label>Password<input type="password" id="login-password" required autocomplete="current-password"></label>
+      <p class="form-err" id="login-err" hidden></p>
+      <button class="pay-btn" type="submit">Sign in</button>
+    </form>
+  </section>
+
+  <section id="dash-view" hidden>
+    <div class="dash-head">
+      <div><span class="eyebrow">CRM</span><h1>Orders</h1></div>
+      <div class="dash-actions">
+        <button class="ghost-btn" id="refresh-btn">Refresh</button>
+        <button class="ghost-btn" id="logout-btn">Sign out</button>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Pay</th><th>Status</th></tr>
+        </thead>
+        <tbody id="orders-body"></tbody>
+      </table>
+    </div>
+    <p class="muted" id="orders-empty" hidden>No orders yet.</p>
+  </section>
+</main>
+
+<footer>
+  <img src="assets/logo.png" alt="VEDA SERA">
+  <p>curating beautiful minds</p>
+  <small>© VEDA SERA · SEOUL, KOREA</small>
+</footer>
+
+<script src="js/crm.js"></script>
+</body>
+</html>

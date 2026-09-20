@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VEDA SERA — Shop</title>
+<meta name="description" content="VEDA SERA — shop the collection. Objects for movement, rest and the rituals in between.">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="shop.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="js/config.js"></script>
+<script src="js/pixel.js"></script>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html"><img src="assets/logo.png" alt="VEDA SERA"></a>
+  <nav>
+    <a href="index.html#story">STORY</a>
+    <a href="index.html#mat">THE MAT</a>
+    <a href="index.html#philosophy">PHILOSOPHY</a>
+    <a href="index.html#weave">WEAVE</a>
+    <a href="index.html#material">MATERIAL</a>
+    <a href="shop.html" aria-current="page">SHOP</a>
+  </nav>
+</header>
+
+<main>
+  <section class="shop-hero">
+    <span class="eyebrow">SHOP</span>
+    <h1>Objects for<br>the ritual.</h1>
+    <p>Made slowly, made with intention — delivered to your door.<br>Secure checkout with card or KakaoPay.</p>
+  </section>
+
+  <section class="product-grid" id="product-grid" aria-live="polite"></section>
+
+  <section class="shop-note">
+    <p>Also available at our <a href="http://smartstore.naver.com/vedasera" target="_blank" rel="noopener">Naver Smart Store</a>.</p>
+  </section>
+</main>
+
+<button class="cart-fab" id="cart-fab" aria-label="Open cart">Cart · <span id="cart-count">0</span></button>
+
+<div class="overlay" id="overlay" hidden></div>
+
+<aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart" hidden>
+  <div class="drawer-head">
+    <span class="eyebrow">YOUR CART</span>
+    <button class="icon-btn" id="cart-close" aria-label="Close cart">✕</button>
+  </div>
+  <div class="drawer-items" id="cart-items"></div>
+  <div class="drawer-foot">
+    <div class="subtotal"><span>Subtotal</span><strong id="cart-subtotal">₩0</strong></div>
+    <p class="ship-note">Shipping calculated at checkout — free over ₩150,000.</p>
+    <button class="pay-btn" id="checkout-btn">Checkout</button>
+  </div>
+</aside>
+
+<div class="modal" id="qv-modal" hidden>
+  <div class="modal-card">
+    <button class="icon-btn modal-x" data-close="qv-modal" aria-label="Close">✕</button>
+    <div class="qv-img"><img id="qv-image" alt=""></div>
+    <div class="qv-body">
+      <span class="eyebrow">VEDA SERA</span>
+      <h2 id="qv-name"></h2>
+      <p class="qv-price" id="qv-price"></p>
+      <p id="qv-desc"></p>
+      <div class="qv-row">
+        <div class="qty"><button id="qv-minus" aria-label="Decrease">−</button><span id="qv-qty">1</span><button id="qv-plus" aria-label="Increase">＋</button></div>
+        <button class="pay-btn" id="qv-add">Add to cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="checkout-modal" hidden>
+  <div class="modal-card wide">
+    <button class="icon-btn modal-x" data-close="checkout-modal" aria-label="Close">✕</button>
+    <span class="eyebrow">CHECKOUT</span>
+    <h2>Where should we send it?</h2>
+    <div class="setup-warn" id="setup-warn" hidden>
+      The store isn't connected yet (payment / order setup incomplete).
+      Please come back soon — or reach us via the Naver Smart Store.
+    </div>
+    <form id="checkout-form" novalidate>
+      <div class="frow"><label>Full name<input name="name" required autocomplete="name"></label></div>
+      <div class="frow two">
+        <label>Phone<input name="phone" required inputmode="tel" placeholder="010-0000-0000" autocomplete="tel"></label>
+        <label>Email (optional)<input name="email" type="email" autocomplete="email"></label>
+      </div>
+      <div class="frow two">
+        <label>Postal code<input name="postcode" id="f-postcode" required readonly placeholder="Click search"></label>
+        <label>&nbsp;<button type="button" class="ghost-btn" id="addr-search">주소 검색</button></label>
+      </div>
+      <div class="frow"><label>Address<input name="address" id="f-address" required readonly></label></div>
+      <div class="frow"><label>Address detail<input name="addressDetail" placeholder="Apt / unit / floor"></label></div>
+      <div class="frow"><label>Order memo (optional)<input name="memo" placeholder="Delivery requests, etc."></label></div>
+
+      <div class="paymethods">
+        <span class="eyebrow">PAYMENT</span>
+        <label class="pm"><input type="radio" name="paymethod" value="card" checked><span>Card</span></label>
+        <label class="pm"><input type="radio" name="paymethod" value="kakao"><span>KakaoPay</span></label>
+      </div>
+
+      <div class="order-summary" id="order-summary"></div>
+      <p class="form-err" id="form-err" hidden></p>
+      <button class="pay-btn big" type="submit" id="pay-btn">Pay securely</button>
+      <p class="secure-note">Payments are processed securely by PortOne. We never see your card details.</p>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="success-modal" hidden>
+  <div class="modal-card narrow center">
+    <span class="eyebrow">THANK YOU</span>
+    <h2>Order confirmed.</h2>
+    <p>Your order <strong id="success-order-no"></strong> is being prepared.<br>We'll reach out shortly about delivery.</p>
+    <button class="pay-btn" data-close="success-modal">Continue browsing</button>
+  </div>
+</div>
+
+<footer>
+  <img src="assets/logo.png" alt="VEDA SERA">
+  <p>curating beautiful minds</p>
+  <nav>
+    <a href="index.html#story">STORY</a>
+    <a href="index.html#mat">THE MAT</a>
+    <a href="index.html#philosophy">PHILOSOPHY</a>
+    <a href="index.html#weave">WEAVE</a>
+    <a href="index.html#material">MATERIAL</a>
+  </nav>
+  <small>© VEDA SERA · SEOUL, KOREA</small>
+</footer>
+
+<script src="js/shop.js"></script>
+</body>
+</html>
