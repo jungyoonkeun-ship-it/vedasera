@@ -164,10 +164,8 @@ h1,h2,h3,blockquote,.foot-mark{font-family:Georgia,"Times New Roman",serif;font-
 
 /* ---------- footer ---------- */
 footer{padding:14vh 6vw 46px;text-align:center;background:var(--bone)}
-.foot-mark{
-  font-size:clamp(64px,11vw,190px);letter-spacing:-.03em;line-height:1;
-  margin:0 0 10px;font-weight:400;
-}
+.foot-mark{margin:0 0 34px}
+.foot-mark img{width:min(760px,84vw);height:auto;margin:0 auto}
 .foot-line{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,30px);margin:0 0 54px;color:var(--ink-soft)}
 footer nav{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
 footer nav a{font-size:12px;font-weight:500;letter-spacing:.22em;border-bottom:1px solid transparent;padding-bottom:6px}
