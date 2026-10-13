@@ -23,14 +23,29 @@
   }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
   document.querySelectorAll("[data-reveal]").forEach(function (el) { io.observe(el); });
 
-  /* outbound Naver product clicks -> pixel funnel events */
+  /* outbound Naver product clicks -> pixel funnel events.
+     content_ids use the catalog SKUs (VS-FG-001 / VS-MB-002) so the events
+     match the Meta/Google catalog products; value is the verified price so
+     Events Manager can report return on ad spend. The data-naver-product
+     attribute carries the Naver product ID, mapped here to SKU + price. */
+  var NAVER_PRODUCT_MAP = {
+    "13748710775": { sku: "VS-FG-001", value: 198000 },
+    "13748710776": { sku: "VS-MB-002", value: 198000 }
+  };
   document.querySelectorAll("[data-naver-product]").forEach(function (a) {
     a.addEventListener("click", function () {
       if (!window.fbq) return;
-      var id = a.getAttribute("data-naver-product");
+      var naverId = a.getAttribute("data-naver-product");
+      var mapped = NAVER_PRODUCT_MAP[naverId] || { sku: naverId, value: 198000 };
+      var params = {
+        content_ids: [mapped.sku],
+        content_type: "product",
+        value: mapped.value,
+        currency: "KRW"
+      };
       try {
-        fbq("track", "ViewContent", { content_ids: [id], content_type: "product", currency: "KRW" });
-        fbq("track", "InitiateCheckout", { content_ids: [id], content_type: "product", currency: "KRW" });
+        fbq("track", "ViewContent", params);
+        fbq("track", "InitiateCheckout", params);
       } catch (e) { /* pixel is best-effort */ }
     });
   });
