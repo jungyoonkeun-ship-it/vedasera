@@ -7,6 +7,8 @@
 <meta name="description" content="Veda Sera handwoven cotton yoga mat in Midnight Blue. 100% cotton, handwoven, 61 × 188 cm × 8 mm. ₩198,000 with free shipping in Korea.">
 <link rel="icon" type="image/png" href="assets/logo-square.png">
 <link rel="stylesheet" href="style.css">
+<script src="js/config.js"></script>
+<script src="js/pixel.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -93,5 +95,33 @@
   <p class="buy-note">Checkout and delivery are handled securely by our official Naver Smart Store.</p>
   <p class="policy-link">Shipping &amp; returns: <a href="returns.html">vedasera.com/returns</a> — free shipping; 7-day change-of-mind returns (₩8,000 return shipping).</p>
 </main>
+<script>
+  /* Meta Pixel — product events for this page (feed ID VS-MB-002).
+     ViewContent fires on load; InitiateCheckout fires on the Buy Now
+     click, just before the Naver redirect. A Purchase event is NOT
+     fired — checkout completes on Naver, off this site. */
+  if (window.fbq) {
+    fbq("track", "ViewContent", {
+      content_ids: ["VS-MB-002"],
+      content_type: "product",
+      value: 198000,
+      currency: "KRW"
+    });
+  }
+  var buyBtn = document.querySelector(".buy-now");
+  if (buyBtn) {
+    buyBtn.addEventListener("click", function () {
+      if (!window.fbq) return;
+      try {
+        fbq("track", "InitiateCheckout", {
+          content_ids: ["VS-MB-002"],
+          content_type: "product",
+          value: 198000,
+          currency: "KRW"
+        });
+      } catch (e) { /* pixel is best-effort */ }
+    });
+  }
+</script>
 </body>
 </html>
