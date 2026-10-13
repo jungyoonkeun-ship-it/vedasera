@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>Veda Sera — Google Merchant Center feed (generated from the Setu verified record)</title>
+    <link>https://vedasera.com</link>
+    <description>Handwoven cotton yoga mats. Source of truth: https://vedasera.com/catalog.json (verified 2026-10-13).</description>
+    <item>
+      <g:id>VS-FG-001</g:id>
+      <title>Handwoven Cotton Yoga Mat — Forest Green</title>
+      <description>Handwoven on a traditional handloom, finished by hand. Made in a GOTS-certified factory (the mat itself is not individually certified). Anti-slip dotted back. 100% cotton, handwoven, 61 × 188 cm × 8 mm.</description>
+      <link>https://smartstore.naver.com/vedasera/products/13748710775</link>
+      <g:image_link>https://vedasera.com/assets/naver-forest-green.jpg</g:image_link>
+      <g:price>198000 KRW</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:brand>Veda Sera</g:brand>
+      <g:condition>new</g:condition>
+      <g:google_product_category>Sporting Goods &gt; Exercise &amp; Fitness &gt; Yoga &gt; Yoga Mats</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:color>Forest Green</g:color>
+      <g:material>100% cotton</g:material>
+      <g:size>61 × 188 cm × 8 mm</g:size>
+      <g:shipping_weight>2.5 kg</g:shipping_weight>
+    </item>
+    <item>
+      <g:id>VS-MB-002</g:id>
+      <title>Handwoven Cotton Yoga Mat — Midnight Blue</title>
+      <description>Handwoven on a traditional handloom, finished by hand. Made in a GOTS-certified factory (the mat itself is not individually certified). Anti-slip dotted back. 100% cotton, handwoven, 61 × 188 cm × 8 mm.</description>
+      <link>https://smartstore.naver.com/vedasera/products/13748710776</link>
+      <g:image_link>https://vedasera.com/assets/naver-midnight-blue.png</g:image_link>
+      <g:price>198000 KRW</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:brand>Veda Sera</g:brand>
+      <g:condition>new</g:condition>
+      <g:google_product_category>Sporting Goods &gt; Exercise &amp; Fitness &gt; Yoga &gt; Yoga Mats</g:google_product_category>
+      <g:identifier_exists>false</g:identifier_exists>
+      <g:color>Midnight Blue</g:color>
+      <g:material>100% cotton</g:material>
+      <g:size>61 × 188 cm × 8 mm</g:size>
+      <g:shipping_weight>2.5 kg</g:shipping_weight>
+    </item>
+  </channel>
+</rss>
