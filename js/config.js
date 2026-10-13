@@ -1,6 +1,7 @@
 /* VEDA SERA — site configuration.
-   Paste your Meta Pixel ID (from Events Manager) below, commit, push.
-   Until then, pixel calls are safely skipped. */
+   Meta Pixel ID from Events Manager (set 2026-10-13).
+   If the ID were ever a REPLACE_WITH_* placeholder, pixel calls
+   would be safely skipped instead. */
 window.VS_CONFIG = {
-  pixelId: "REPLACE_WITH_PIXEL_ID",
+  pixelId: "1215629626952834",
 };
