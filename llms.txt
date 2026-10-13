@@ -1,0 +1,13 @@
+# Veda Sera
+
+> Veda Sera makes handwoven cotton yoga mats (100% cotton, 61 × 188 cm × 8 mm), sold in Korea via Naver Smart Store. Two colourways: Forest Green and Midnight Blue, ₩198,000 each.
+
+## Verified product record (Setu product hub)
+
+- [Verified catalog page](https://vedasera.com/catalog.html): every product claim with its source and verification status
+- [Machine-readable catalog feed (JSON, schema.org)](https://vedasera.com/catalog.json): the same record for agents to pull directly — price, stock, weight, category, ratings, per-claim verification
+
+## Buy
+
+- [Forest Green on Naver Smart Store](https://smartstore.naver.com/vedasera/products/13748710775)
+- [Midnight Blue on Naver Smart Store](https://smartstore.naver.com/vedasera/products/13748710776)
