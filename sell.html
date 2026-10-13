@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SETU — Sell on Setu · VEDA SERA</title>
+<meta name="description" content="Setu seller onboarding — tell your brand story, upload your products, and get a catalog that AI agents can read. 0% platform fee, invite-only at launch.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="assets/logo-square.png">
+<link rel="apple-touch-icon" href="assets/logo-square.png">
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<style>
+  /* ---- sell.html page styles (site variables from style.css) ---- */
+  .page-hero{padding:180px 6vw 70px;max-width:1560px;margin:0 auto}
+  .page-hero h1{font-weight:400;font-size:clamp(46px,6vw,104px);line-height:1.0;letter-spacing:-.025em;margin:0 0 30px}
+  .page-hero .lede{font-size:clamp(17px,1.5vw,20px);line-height:1.8;color:var(--ink-soft);max-width:640px;margin:0 0 22px}
+  .honest-note{border:1px solid var(--line);padding:18px 22px;max-width:640px;font-size:15px;line-height:1.7;color:var(--ink-soft);background:var(--bone-2)}
+  .honest-note b{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.22em;display:block;margin-bottom:6px;color:var(--ink)}
+  .lang-toggle{display:flex;gap:0;border:1px solid var(--ink);margin-left:26px}
+  .lang-toggle button{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.14em;padding:9px 14px;background:transparent;border:0;color:var(--ink);cursor:pointer}
+  .lang-toggle button.active{background:var(--ink);color:var(--bone)}
+  .site-header nav .lang-toggle button::after{display:none}
+
+  .section{padding:9vh 6vw;max-width:1560px;margin:0 auto}
+  .section.alt{background:var(--bone-2);max-width:none}
+  .section.alt>.inner{max-width:1560px;margin:0 auto}
+  .section h2{font-weight:400;font-size:clamp(36px,3.8vw,72px);line-height:1.05;letter-spacing:-.02em;margin:0 0 34px}
+  .section .intro{font-size:17px;line-height:1.85;color:var(--ink-soft);max-width:620px;margin:0 0 40px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;margin-bottom:56px}
+  .step{border-top:1px solid var(--ink);padding-top:22px}
+  .step b{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.24em;display:block;margin-bottom:14px;color:var(--ink-soft)}
+  .step h3{font-weight:400;font-size:clamp(24px,2vw,32px);letter-spacing:-.01em;margin:0 0 12px}
+  .step p{font-size:16px;line-height:1.75;color:var(--ink-soft);margin:0}
+  .terms{border-bottom:1px solid var(--line)}
+  .terms div{border-top:1px solid var(--line);padding:20px 0;display:grid;grid-template-columns:220px 1fr;gap:20px;align-items:baseline}
+  .terms b{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.2em}
+  .terms span{font-size:17px;line-height:1.7}
+
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 40px}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field.full{grid-column:1/-1}
+  .field label{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.22em;color:var(--ink-soft)}
+  .field label .kr{letter-spacing:.05em;opacity:.75}
+  .field input,.field select,.field textarea{
+    font-family:var(--serif);font-size:17px;color:var(--ink);
+    background:transparent;border:1px solid var(--line);padding:13px 15px;width:100%;
+  }
+  .field textarea{min-height:110px;resize:vertical;line-height:1.65}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink)}
+  .field input.invalid{border-color:#a33b2e}
+
+  .dropzone{
+    border:1px dashed var(--ink-soft);padding:38px 24px;text-align:center;cursor:pointer;
+    transition:background .25s;margin-bottom:18px;background:transparent;
+  }
+  .dropzone:hover,.dropzone.drag{background:var(--bone-2)}
+  .dropzone p{margin:0 0 6px;font-size:18px}
+  .dropzone small{font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:var(--ink-soft)}
+  .import-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  .import-status{font-size:15px;color:var(--ink-soft);margin:8px 0 30px;min-height:24px}
+  .import-status.warn{color:#a33b2e}
+
+  .btn{
+    display:inline-block;font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.2em;
+    padding:13px 24px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;
+  }
+  .btn:hover{background:var(--ink);color:var(--bone)}
+  .btn.solid{background:var(--ink);color:var(--bone)}
+  .btn.solid:hover{background:var(--noir)}
+  .btn.small{padding:9px 16px;font-size:11px}
+  .btn.light{border-color:var(--bone-on-noir);color:var(--bone-on-noir)}
+  .btn.light:hover{background:var(--bone-on-noir);color:var(--noir)}
+
+  .table-wrap{overflow-x:auto;border:1px solid var(--line)}
+  table.products{border-collapse:collapse;width:100%;min-width:880px;background:transparent}
+  table.products th{
+    font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.18em;text-align:left;
+    padding:12px 10px;border-bottom:1px solid var(--ink);color:var(--ink-soft);white-space:nowrap;
+  }
+  table.products td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.products input,table.products select,table.products textarea{
+    font-family:var(--serif);font-size:15px;color:var(--ink);background:transparent;
+    border:1px solid transparent;padding:8px;width:100%;min-width:90px;
+  }
+  table.products textarea{min-width:170px;min-height:38px;resize:vertical;line-height:1.5}
+  table.products input:focus,table.products select:focus,table.products textarea:focus{outline:none;border-color:var(--line)}
+  table.products input.price{text-align:right;min-width:100px}
+  .row-del{font-family:var(--sans);font-size:10px;letter-spacing:.12em;border:1px solid var(--line);background:transparent;padding:8px 10px;cursor:pointer;color:var(--ink-soft);white-space:nowrap}
+  .row-del:hover{border-color:#a33b2e;color:#a33b2e}
+  .example-tag{font-family:var(--sans);font-size:9px;letter-spacing:.16em;border:1px solid var(--ink-soft);color:var(--ink-soft);padding:2px 6px;display:inline-block;margin-top:4px}
+
+  .photos-grid{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px}
+  .photo-thumb{position:relative;width:110px}
+  .photo-thumb img{width:110px;height:110px;object-fit:cover;border:1px solid var(--line)}
+  .photo-thumb span{font-family:var(--sans);font-size:10px;letter-spacing:.1em;color:var(--ink-soft);display:block;margin-top:5px;text-align:center}
+  .photo-thumb button{position:absolute;top:4px;right:4px;width:22px;height:22px;border:1px solid var(--line);background:var(--bone);cursor:pointer;font-size:13px;line-height:1;padding:0}
+
+  .catalog-head{border-bottom:1px solid var(--ink);padding-bottom:26px;margin-bottom:40px}
+  .catalog-head h3{font-weight:400;font-size:clamp(34px,3.4vw,58px);letter-spacing:-.02em;margin:0 0 8px}
+  .catalog-head .cmeta{font-family:var(--sans);font-size:11px;letter-spacing:.2em;color:var(--ink-soft);margin:0 0 14px}
+  .catalog-head .cstory{font-size:17px;line-height:1.8;color:var(--ink-soft);max-width:680px;margin:0}
+  .catalog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:34px}
+  .cat-card .cimg{background:var(--bone-2);aspect-ratio:4/5;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .section.alt .cat-card .cimg{background:var(--bone)}
+  .cat-card .cimg img{width:100%;height:100%;object-fit:cover}
+  .cat-card .cimg .noimg{font-family:var(--sans);font-size:10px;letter-spacing:.22em;color:var(--ink-soft)}
+  .cat-card h4{font-weight:400;font-size:22px;letter-spacing:-.01em;margin:16px 0 2px;line-height:1.3}
+  .cat-card .ckr{font-size:15px;color:var(--ink-soft);margin:0 0 8px}
+  .cat-card .cprice{font-size:19px;margin:0 0 8px}
+  .cat-card .cspec{font-size:14px;line-height:1.65;color:var(--ink-soft);margin:0}
+  .empty-note{font-size:17px;color:var(--ink-soft)}
+
+  .agent-box{background:var(--noir);color:var(--bone-on-noir);padding:44px}
+  .agent-box h3{font-weight:400;font-size:clamp(26px,2.4vw,38px);margin:0 0 14px;letter-spacing:-.01em}
+  .agent-box p{font-size:16px;line-height:1.8;opacity:.85;max-width:640px;margin:0 0 24px}
+  .agent-box pre{
+    background:#0c0906;border:1px solid var(--line-light);color:#d8cfba;
+    font-family:Menlo,Consolas,monospace;font-size:12px;line-height:1.6;
+    padding:18px;overflow:auto;max-height:300px;margin:0 0 22px;white-space:pre-wrap;word-break:break-word;
+  }
+  .agent-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .copy-ok{font-family:var(--sans);font-size:11px;letter-spacing:.14em;opacity:0;transition:opacity .3s}
+  .copy-ok.show{opacity:.85}
+
+  .fresh-badge{font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.18em;padding:5px 10px;border:1px solid var(--ink);display:inline-block;vertical-align:middle}
+  .fresh-badge.fresh{background:var(--ink);color:var(--bone)}
+  .fresh-badge.aging{border-color:var(--ink-soft);color:var(--ink-soft)}
+  .fresh-badge.stale{border-color:#a33b2e;color:#a33b2e}
+  .fresh-line{font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:var(--ink-soft);margin:0 0 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .agent-box .fresh-badge{border-color:var(--bone-on-noir);color:var(--bone-on-noir)}
+  .agent-box .fresh-badge.fresh{background:var(--bone-on-noir);color:var(--noir)}
+  .agent-box .fresh-badge.stale{border-color:#e08a7d;color:#e08a7d}
+  .agent-box .fresh-line{color:var(--bone-on-noir);opacity:.85;margin:0 0 20px}
+
+  .submit-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:10px}
+  .confirm{
+    display:none;border:1px solid var(--ink);padding:28px;margin-top:34px;max-width:720px;background:var(--bone-2);
+  }
+  .confirm.show{display:block}
+  .confirm h3{font-weight:400;font-size:28px;margin:0 0 12px}
+  .confirm p{font-size:16px;line-height:1.8;color:var(--ink-soft);margin:0 0 10px}
+  .draft-note{font-family:var(--sans);font-size:11px;letter-spacing:.12em;color:var(--ink-soft);margin-top:14px}
+
+  @media(max-width:900px){
+    .page-hero{padding:130px 24px 50px}
+    .section{padding:8vh 24px}
+    .steps{grid-template-columns:1fr;gap:30px}
+    .form-grid{grid-template-columns:1fr}
+    .terms div{grid-template-columns:1fr;gap:4px}
+    .agent-box{padding:28px 20px}
+    .lang-toggle{margin-left:12px}
+    .site-header nav a:not(.shop-link){display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <a class="brand" href="index.html" aria-label="VEDA SERA home"><img src="assets/logo.png" alt="VEDA SERA"></a>
+  <nav>
+    <a href="index.html#origin">ORIGIN</a>
+    <a href="index.html#craft">CRAFT</a>
+    <a href="index.html#collection">COLLECTION</a>
+    <a href="https://smartstore.naver.com/vedasera" target="_blank" rel="noopener" class="shop-link naver-shop"><svg class="naver-n" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="5" fill="#ffffff"/><path d="M7.2 17.4V6.6h2.5l4.6 6.6V6.6h2.5v10.8h-2.5l-4.6-6.6v6.6z" fill="#03C75A"/></svg>SHOP ON NAVER</a>
+    <a href="setu.html" class="shop-link">SETU</a>
+    <a href="sell.html" class="shop-link">SELL</a>
+    <span class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" id="lang-en" class="active">EN</button>
+      <button type="button" id="lang-ko">한국어</button>
+    </span>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <p class="eyebrow" data-i18n="hero_eyebrow">SETU — SELLER ONBOARDING · 판매자 온보딩</p>
+    <h1 data-i18n="hero_title">Sell where agents shop.</h1>
+    <p class="lede" data-i18n="hero_sub">Setu is a marketplace built for the age of AI agents. Tell us your story, upload your products, and we build you a catalog that agents like Muse can read, search, and buy from — with your approval at every step.</p>
+    <div class="honest-note">
+      <b data-i18n="note_title">A WORKING PROTOTYPE</b>
+      <span data-i18n="note_body">This page is a front-end prototype. Everything you type or upload stays in your browser on this device — nothing is sent to a server. Setu is invite-only during launch, so the button at the end simply records your draft locally.</span>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <p class="chapter-num" data-i18n="how_num">How it works</p>
+    <h2 data-i18n="how_title">Three steps to an agent-readable store.</h2>
+    <div class="steps">
+      <div class="step">
+        <b>STEP 01</b>
+        <h3 data-i18n="step1_t">Tell your story</h3>
+        <p data-i18n="step1_d">Share your brand in English and Korean — who you are, what you make, and why it matters. Agents recommend what they can understand.</p>
+      </div>
+      <div class="step">
+        <b>STEP 02</b>
+        <h3 data-i18n="step2_t">Upload your products</h3>
+        <p data-i18n="step2_d">Drop in an Excel sheet of your products, or type them in one by one. Add photos. Edit everything until it sounds like you.</p>
+      </div>
+      <div class="step">
+        <b>STEP 03</b>
+        <h3 data-i18n="step3_t">Agents can find you</h3>
+        <p data-i18n="step3_d">We publish your catalog as structured data that AI agents can read. When a customer asks their agent for a product like yours, you can be the answer.</p>
+      </div>
+    </div>
+    <div class="terms">
+      <div><b data-i18n="term1_k">PLATFORM FEE</b><span data-i18n="term1_v">0%. Setu takes no commission on your sales — sellers are our customers, not our inventory.</span></div>
+      <div><b data-i18n="term2_k">PAYMENT COSTS</b><span data-i18n="term2_v">You pay only the actual payment-gateway pass-through cost, at cost, with no platform margin added.</span></div>
+      <div><b data-i18n="term3_k">LAUNCH ACCESS</b><span data-i18n="term3_v">Invite-only during launch, beginning with wellness brands. Request an invitation below.</span></div>
+      <div><b data-i18n="term4_k">YOUR APPROVAL</b><span data-i18n="term4_v">Nothing goes live without your approval. You see the exact catalog and price a buyer will see before anything is published.</span></div>
+      <div><b data-i18n="term5_k">CATALOG FRESHNESS</b><span data-i18n="term5_v">Agents pull product information fastest from catalogs that are recently updated and precisely categorized — including a Google Product Category for every product. Setu's quality bar: keep your catalog fresh. Fresh within 7 days, Aging to 30 days, Stale beyond that — and stale catalogs rank lower for agents.</span></div>
+    </div>
+  </section>
+
+  <!-- 01 BRAND -->
+  <section class="section alt" id="brand">
+    <div class="inner">
+      <p class="chapter-num" data-i18n="brand_num">01 — Your brand</p>
+      <h2 data-i18n="brand_title">Tell your story.</h2>
+      <p class="intro" data-i18n="brand_intro">Write it the way you would tell a good customer. Both languages help: Korean for home, English for the agents and buyers who search across borders.</p>
+      <div class="form-grid">
+        <div class="field">
+          <label for="b-nameEn" data-i18n="f_brand_en">BRAND NAME (ENGLISH)</label>
+          <input id="b-nameEn" type="text" placeholder="Veda Sera" data-bind="nameEn">
+        </div>
+        <div class="field">
+          <label for="b-nameKr" data-i18n="f_brand_kr">BRAND NAME (KOREAN) · 브랜드명</label>
+          <input id="b-nameKr" type="text" placeholder="베다세라" data-bind="nameKr">
+        </div>
+        <div class="field">
+          <label for="b-category" data-i18n="f_category">CATEGORY</label>
+          <select id="b-category" data-bind="category">
+            <option value="Wellness" data-i18n="cat_wellness">Wellness</option>
+            <option value="Beauty" data-i18n="cat_beauty">Beauty</option>
+            <option value="Food" data-i18n="cat_food">Food</option>
+            <option value="Home" data-i18n="cat_home">Home</option>
+            <option value="Fashion" data-i18n="cat_fashion">Fashion</option>
+            <option value="Other" data-i18n="cat_other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="b-country" data-i18n="f_country">COUNTRY</label>
+          <input id="b-country" type="text" placeholder="South Korea" data-bind="country">
+        </div>
+        <div class="field">
+          <label for="b-email" data-i18n="f_email">CONTACT EMAIL</label>
+          <input id="b-email" type="email" placeholder="you@yourbrand.com" data-bind="email">
+        </div>
+        <div class="field">
+          <label for="b-website" data-i18n="f_website">WEBSITE / SMART STORE URL</label>
+          <input id="b-website" type="url" placeholder="https://smartstore.naver.com/yourbrand" data-bind="website">
+        </div>
+        <div class="field full">
+          <label for="b-storyEn" data-i18n="f_story_en">BRAND STORY (ENGLISH)</label>
+          <textarea id="b-storyEn" data-bind="storyEn" placeholder="We make handwoven cotton yoga mats on traditional handlooms…"></textarea>
+        </div>
+        <div class="field full">
+          <label for="b-storyKr" data-i18n="f_story_kr">BRAND STORY (KOREAN) · 브랜드 스토리</label>
+          <textarea id="b-storyKr" data-bind="storyKr" placeholder="전통 직조기로 손수 짠 100% 면 요가매트를 만듭니다…"></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 PRODUCTS -->
+  <section class="section" id="products">
+    <p class="chapter-num" data-i18n="prod_num">02 — Your products</p>
+    <h2 data-i18n="prod_title">Upload your products.</h2>
+    <p class="intro" data-i18n="prod_intro">Bring a spreadsheet if you have one — we read the first sheet and match columns named in English or Korean (상품명, 가격, 소재, 사이즈, 카테고리, 설명…). Give every product a precise Google Product Category — it is how agents place your product in the right shelf. Or skip the file and type products straight into the table.</p>
+
+    <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload product spreadsheet">
+      <p data-i18n="dz_text">Drop your Excel or CSV file here, or click to choose</p>
+      <small data-i18n="dz_hint">.XLSX · .XLS · .CSV — FIRST SHEET ONLY</small>
+    </div>
+    <input type="file" id="sheet-input" accept=".xlsx,.xls,.csv" hidden>
+    <div class="import-row">
+      <button type="button" class="btn small" id="sample-btn" data-i18n="sample_btn">Download sample CSV template</button>
+      <button type="button" class="btn small" id="add-row-btn" data-i18n="add_row">Add a product row</button>
+    </div>
+    <p class="import-status" id="import-status"></p>
+
+    <div class="table-wrap">
+      <table class="products" aria-label="Products">
+        <thead>
+          <tr>
+            <th data-i18n="th_name_en">NAME (EN)</th>
+            <th data-i18n="th_name_kr">NAME (KR)</th>
+            <th data-i18n="th_price">PRICE (KRW)</th>
+            <th data-i18n="th_material">MATERIAL</th>
+            <th data-i18n="th_size">SIZE</th>
+            <th data-i18n="th_gpc">GOOGLE PRODUCT CATEGORY</th>
+            <th data-i18n="th_photo">PHOTO</th>
+            <th data-i18n="th_desc">DESCRIPTION</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="product-rows"></tbody>
+      </table>
+    </div>
+
+    <datalist id="gpc-list">
+      <option value="Sporting Goods > Exercise & Fitness > Yoga > Yoga Mats"></option>
+      <option value="Sporting Goods > Exercise & Fitness > Yoga > Yoga Blocks & Props"></option>
+      <option value="Sporting Goods > Exercise & Fitness > Fitness Accessories"></option>
+      <option value="Health & Beauty > Personal Care > Cosmetics > Skin Care"></option>
+      <option value="Health & Beauty > Personal Care"></option>
+      <option value="Home & Garden > Linens"></option>
+      <option value="Home & Garden > Decor"></option>
+      <option value="Apparel & Accessories > Clothing > Activewear"></option>
+      <option value="Food, Beverages & Tobacco > Food Items"></option>
+    </datalist>
+
+    <h3 style="font-weight:400;font-size:26px;margin:48px 0 4px" data-i18n="photos_title">Photos</h3>
+    <p class="intro" style="margin-bottom:14px" data-i18n="photos_hint">Upload product or brand photos, then assign a photo to each product in the table above. Photos stay in your browser — in the live Setu they would be uploaded with your catalog.</p>
+    <button type="button" class="btn small" id="photo-btn" data-i18n="photo_btn">Choose photos</button>
+    <input type="file" id="photo-input" accept="image/*" multiple hidden>
+    <div class="photos-grid" id="photos-grid"></div>
+  </section>
+
+  <!-- 03 CATALOG PREVIEW -->
+  <section class="section alt" id="preview">
+    <div class="inner">
+      <p class="chapter-num" data-i18n="preview_num">03 — Your catalog</p>
+      <h2 data-i18n="preview_title">This is the catalog we build for you.</h2>
+      <div id="catalog-preview"></div>
+    </div>
+  </section>
+
+  <!-- 04 AGENT DATA -->
+  <section class="section" id="agent">
+    <p class="chapter-num" data-i18n="agent_num">04 — Agent-readable</p>
+    <h2 data-i18n="agent_title">Built for agents to read.</h2>
+    <div class="agent-box">
+      <h3 data-i18n="agent_h">Structured data, published with your catalog</h3>
+      <p data-i18n="agent_desc">Your catalog is published as schema.org structured data (JSON-LD). That is the format AI agents like Muse read to find, compare, and buy products — no screen-scraping, no guessing. This panel updates live as you type.</p>
+      <p class="fresh-line"><span id="agent-fresh-badge"></span><span id="agent-fresh-date"></span></p>
+      <pre id="json-preview" aria-label="Catalog JSON preview"></pre>
+      <div class="agent-actions">
+        <button type="button" class="btn light" id="download-json" data-i18n="dl_json">Download catalog.json</button>
+        <button type="button" class="btn light" id="copy-json" data-i18n="copy_json">Copy JSON</button>
+        <span class="copy-ok" id="copy-ok" data-i18n="copied">Copied</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 REQUEST INVITATION -->
+  <section class="section alt" id="join">
+    <div class="inner">
+      <p class="chapter-num" data-i18n="join_num">05 — Join Setu</p>
+      <h2 data-i18n="join_title">Request an invitation.</h2>
+      <p class="intro" data-i18n="join_intro">Setu launches invite-only, beginning with wellness. Tell us who you are above, then request your invitation. Your draft is saved in this browser as you work, so you can close the page and come back to it.</p>
+      <div class="submit-row">
+        <button type="button" class="btn solid" id="submit-btn" data-i18n="submit_btn">Request invitation</button>
+        <button type="button" class="btn" id="clear-btn" data-i18n="clear_btn">Clear draft</button>
+      </div>
+      <p class="draft-note" data-i18n="draft_note">DRAFT SAVES AUTOMATICALLY TO THIS BROWSER (LOCALSTORAGE). NO DATA LEAVES YOUR DEVICE.</p>
+      <div class="confirm" id="confirm-box" role="status">
+        <h3 data-i18n="confirm_title">Draft saved — here is the honest part.</h3>
+        <p data-i18n="confirm_body">This prototype has no server behind it, so your request has not been sent anywhere: your brand, products, and photos are stored only in this browser on this device. In the live Setu, this button sends your catalog draft to our team for an invitation review — and nothing would go on sale without your approval.</p>
+        <p id="confirm-summary"></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="foot-mark"><img src="assets/logo.png" alt="Veda Sera"></p>
+  <p class="foot-line">curating beautiful minds</p>
+  <nav>
+    <a href="setu.html">SETU</a>
+    <a href="sell.html">SELL ON SETU</a>
+    <a href="https://smartstore.naver.com/vedasera" target="_blank" rel="noopener">Naver Smart Store</a>
+    <a href="https://www.instagram.com/veda.sera" target="_blank" rel="noopener">Instagram</a>
+  </nav>
+  <small>© 2026 VEDA SERA · SETU · SEOUL, KOREA</small>
+</footer>
+
+<script type="application/ld+json" id="catalog-jsonld">{}</script>
+<script>
+"use strict";
+
+/* ================= i18n ================= */
+var I18N = {
+  en: {
+    hero_eyebrow: "SETU — SELLER ONBOARDING · 판매자 온보딩",
+    hero_title: "Sell where agents shop.",
+    hero_sub: "Setu is a marketplace built for the age of AI agents. Tell us your story, upload your products, and we build you a catalog that agents like Muse can read, search, and buy from — with your approval at every step.",
+    note_title: "A WORKING PROTOTYPE",
+    note_body: "This page is a front-end prototype. Everything you type or upload stays in your browser on this device — nothing is sent to a server. Setu is invite-only during launch, so the button at the end simply records your draft locally.",
+    how_num: "How it works",
+    how_title: "Three steps to an agent-readable store.",
+    step1_t: "Tell your story",
+    step1_d: "Share your brand in English and Korean — who you are, what you make, and why it matters. Agents recommend what they can understand.",
+    step2_t: "Upload your products",
+    step2_d: "Drop in an Excel sheet of your products, or type them in one by one. Add photos. Edit everything until it sounds like you.",
+    step3_t: "Agents can find you",
+    step3_d: "We publish your catalog as structured data that AI agents can read. When a customer asks their agent for a product like yours, you can be the answer.",
+    term1_k: "PLATFORM FEE", term1_v: "0%. Setu takes no commission on your sales — sellers are our customers, not our inventory.",
+    term2_k: "PAYMENT COSTS", term2_v: "You pay only the actual payment-gateway pass-through cost, at cost, with no platform margin added.",
+    term3_k: "LAUNCH ACCESS", term3_v: "Invite-only during launch, beginning with wellness brands. Request an invitation below.",
+    term4_k: "YOUR APPROVAL", term4_v: "Nothing goes live without your approval. You see the exact catalog and price a buyer will see before anything is published.",
+    term5_k: "CATALOG FRESHNESS", term5_v: "Agents pull product information fastest from catalogs that are recently updated and precisely categorized — including a Google Product Category for every product. Setu's quality bar: keep your catalog fresh. Fresh within 7 days, Aging to 30 days, Stale beyond that — and stale catalogs rank lower for agents.",
+    brand_num: "01 — Your brand",
+    brand_title: "Tell your story.",
+    brand_intro: "Write it the way you would tell a good customer. Both languages help: Korean for home, English for the agents and buyers who search across borders.",
+    f_brand_en: "BRAND NAME (ENGLISH)",
+    f_brand_kr: "BRAND NAME (KOREAN) · 브랜드명",
+    f_category: "CATEGORY",
+    f_country: "COUNTRY",
+    f_email: "CONTACT EMAIL",
+    f_website: "WEBSITE / SMART STORE URL",
+    f_story_en: "BRAND STORY (ENGLISH)",
+    f_story_kr: "BRAND STORY (KOREAN) · 브랜드 스토리",
+    cat_wellness: "Wellness", cat_beauty: "Beauty", cat_food: "Food", cat_home: "Home", cat_fashion: "Fashion", cat_other: "Other",
+    prod_num: "02 — Your products",
+    prod_title: "Upload your products.",
+    prod_intro: "Bring a spreadsheet if you have one — we read the first sheet and match columns named in English or Korean (상품명, 가격, 소재, 사이즈, 카테고리, 설명…). Give every product a precise Google Product Category — it is how agents place your product in the right shelf. Or skip the file and type products straight into the table.",
+    dz_text: "Drop your Excel or CSV file here, or click to choose",
+    dz_hint: ".XLSX · .XLS · .CSV — FIRST SHEET ONLY",
+    sample_btn: "Download sample CSV template",
+    add_row: "Add a product row",
+    th_name_en: "NAME (EN)", th_name_kr: "NAME (KR)", th_price: "PRICE (KRW)", th_material: "MATERIAL",
+    th_size: "SIZE", th_gpc: "GOOGLE PRODUCT CATEGORY", th_photo: "PHOTO", th_desc: "DESCRIPTION",
+    fresh_fresh: "FRESH", fresh_aging: "AGING", fresh_stale: "STALE",
+    fresh_updated: "LAST UPDATED",
+    photos_title: "Photos",
+    photos_hint: "Upload product or brand photos, then assign a photo to each product in the table above. Photos stay in your browser — in the live Setu they would be uploaded with your catalog.",
+    photo_btn: "Choose photos",
+    preview_num: "03 — Your catalog",
+    preview_title: "This is the catalog we build for you.",
+    agent_num: "04 — Agent-readable",
+    agent_title: "Built for agents to read.",
+    agent_h: "Structured data, published with your catalog",
+    agent_desc: "Your catalog is published as schema.org structured data (JSON-LD). That is the format AI agents like Muse read to find, compare, and buy products — no screen-scraping, no guessing. This panel updates live as you type.",
+    dl_json: "Download catalog.json",
+    copy_json: "Copy JSON",
+    copied: "Copied",
+    join_num: "05 — Join Setu",
+    join_title: "Request an invitation.",
+    join_intro: "Setu launches invite-only, beginning with wellness. Tell us who you are above, then request your invitation. Your draft is saved in this browser as you work, so you can close the page and come back to it.",
+    submit_btn: "Request invitation",
+    clear_btn: "Clear draft",
+    draft_note: "DRAFT SAVES AUTOMATICALLY TO THIS BROWSER (LOCALSTORAGE). NO DATA LEAVES YOUR DEVICE.",
+    confirm_title: "Draft saved — here is the honest part.",
+    confirm_body: "This prototype has no server behind it, so your request has not been sent anywhere: your brand, products, and photos are stored only in this browser on this device. In the live Setu, this button sends your catalog draft to our team for an invitation review — and nothing would go on sale without your approval.",
+    no_photo: "NO PHOTO YET",
+    no_photo_opt: "No photo",
+    photo_n: "Photo",
+    delete_row: "Delete",
+    example_tag: "EXAMPLE — DELETE ME",
+    example_desc: "Example row — delete it and add your own products.",
+    untitled_brand: "Your brand",
+    untitled_product: "Untitled product",
+    imported: "Imported {n} product(s) from your file. Check the rows below and edit anything that landed in the wrong column.",
+    import_none: "We could not find product rows in that file. Check that the first sheet has a header row, or use the sample CSV template.",
+    import_fail: "That file could not be read. Try an .xlsx, .xls, or .csv file, or type products into the table directly.",
+    xlsx_missing: "The Excel library could not be loaded (the CDN may be unreachable), so spreadsheet import is unavailable right now. You can still type products into the table, or try again on a different connection.",
+    photos_skipped: "Some photos were too large to keep in the browser draft and were not saved.",
+    confirm_summary: "Draft on this device: {brand} — {n} product(s), {p} photo(s).",
+    email_needed: "Please add a valid contact email above so we know who the invitation is for."
+  },
+  ko: {
+    hero_eyebrow: "SETU — 판매자 온보딩 · SELLER ONBOARDING",
+    hero_title: "에이전트가 쇼핑하는 곳에서 판매하세요.",
+    hero_sub: "Setu는 AI 에이전트 시대를 위해 만든 마켓플레이스입니다. 브랜드 이야기를 들려주시고 상품을 올려주시면, Claude 같은 에이전트가 읽고, 찾고, 구매할 수 있는 카탈로그를 만들어 드립니다. 모든 단계에서 판매자의 승인을 받습니다.",
+    note_title: "작동하는 프로토타입입니다",
+    note_body: "이 페이지는 프론트엔드 프로토타입입니다. 입력하거나 업로드한 모든 내용은 이 기기의 브라우저 안에만 머물고, 서버로 전송되지 않습니다. Setu는 출시 기간 동안 초대제로 운영되므로, 마지막 버튼은 초안을 이 브라우저에 저장만 합니다.",
+    how_num: "이용 방법",
+    how_title: "에이전트가 읽을 수 있는 상점까지, 세 단계.",
+    step1_t: "이야기를 들려주세요",
+    step1_d: "어떤 브랜드인지, 무엇을 만드는지, 왜 만드는지를 영어와 한국어로 알려주세요. 에이전트는 이해할 수 있는 것을 추천합니다.",
+    step2_t: "상품을 올려주세요",
+    step2_d: "상품 엑셀 파일을 끌어다 놓거나, 표에 하나씩 직접 입력하세요. 사진을 더하고, 내 브랜드답게 다듬어 주세요.",
+    step3_t: "에이전트가 찾아옵니다",
+    step3_d: "카탈로그를 AI 에이전트가 읽을 수 있는 구조화 데이터로 발행합니다. 고객이 에이전트에게 당신의 상품 같은 것을 물으면, 당신이 그 답이 될 수 있습니다.",
+    term1_k: "플랫폼 수수료", term1_v: "0%. Setu는 판매에 대한 수수료를 받지 않습니다. 판매자는 우리의 고객이지, 재고가 아닙니다.",
+    term2_k: "결제 비용", term2_v: "실제 결제대행(PG) 통과 비용만, 원가 그대로 부담하시면 됩니다. 플랫폼 마진은 붙지 않습니다.",
+    term3_k: "출시 접근", term3_v: "출시 기간에는 초대제로 운영되며, 웰니스 브랜드부터 시작합니다. 아래에서 초대를 신청하세요.",
+    term4_k: "판매자 승인", term4_v: "판매자의 승인 없이는 아무것도 공개되지 않습니다. 발행 전에 구매자가 보게 될 카탈로그와 가격을 정확히 확인하실 수 있습니다.",
+    term5_k: "카탈로그 최신성", term5_v: "에이전트는 최근에 업데이트되고 정확하게 분류된 카탈로그에서 상품 정보를 가장 빠르게 가져옵니다. 상품마다 구글 상품 카테고리까지 포함해서요. Setu의 품질 기준은 이렇습니다. 카탈로그를 늘 최신으로 유지하세요. 7일 이내는 최신, 30일까지는 갱신 필요, 그보다 오래되면 오래된 카탈로그로 표시되고, 오래된 카탈로그는 에이전트에게 더 낮게 노출됩니다.",
+    brand_num: "01 — 브랜드 소개",
+    brand_title: "이야기를 들려주세요.",
+    brand_intro: "좋은 고객에게 설명하듯 써 주세요. 두 언어가 모두 도움이 됩니다. 한국어는 국내 고객에게, 영어는 국경을 넘어 검색하는 에이전트와 구매자에게 닿습니다.",
+    f_brand_en: "브랜드명 (영어)",
+    f_brand_kr: "브랜드명 (한국어) · BRAND NAME (KOREAN)",
+    f_category: "카테고리",
+    f_country: "국가",
+    f_email: "연락 이메일",
+    f_website: "웹사이트 / 스마트스토어 URL",
+    f_story_en: "브랜드 스토리 (영어)",
+    f_story_kr: "브랜드 스토리 (한국어) · BRAND STORY (KOREAN)",
+    cat_wellness: "웰니스", cat_beauty: "뷰티", cat_food: "식품", cat_home: "리빙/홈", cat_fashion: "패션", cat_other: "기타",
+    prod_num: "02 — 상품 등록",
+    prod_title: "상품을 올려주세요.",
+    prod_intro: "스프레드시트가 있으면 그대로 가져오세요. 첫 번째 시트를 읽고, 영어 또는 한국어 열 이름(상품명, 가격, 소재, 사이즈, 카테고리, 설명…)을 자동으로 맞춥니다. 상품마다 정확한 구글 상품 카테고리를 넣어 주세요. 에이전트가 상품을 올바른 자리에 놓는 기준입니다. 파일이 없으면 표에 직접 입력하셔도 됩니다.",
+    dz_text: "엑셀 또는 CSV 파일을 여기에 끌어다 놓거나, 클릭해서 선택하세요",
+    dz_hint: ".XLSX · .XLS · .CSV — 첫 번째 시트만 읽습니다",
+    sample_btn: "샘플 CSV 양식 다운로드",
+    add_row: "상품 행 추가",
+    th_name_en: "상품명 (영어)", th_name_kr: "상품명 (한국어)", th_price: "가격 (원)", th_material: "소재",
+    th_size: "사이즈", th_gpc: "구글 상품 카테고리", th_photo: "사진", th_desc: "설명",
+    fresh_fresh: "최신", fresh_aging: "갱신 필요", fresh_stale: "오래됨",
+    fresh_updated: "마지막 업데이트",
+    photos_title: "사진",
+    photos_hint: "상품 또는 브랜드 사진을 올린 뒤, 위 표에서 상품마다 사진을 지정하세요. 사진은 브라우저 안에만 머뭅니다. 실제 Setu에서는 카탈로그와 함께 업로드됩니다.",
+    photo_btn: "사진 선택",
+    preview_num: "03 — 카탈로그 미리보기",
+    preview_title: "우리가 만들어 드릴 카탈로그입니다.",
+    agent_num: "04 — 에이전트용 데이터",
+    agent_title: "에이전트가 읽을 수 있게 만들었습니다.",
+    agent_h: "카탈로그와 함께 발행되는 구조화 데이터",
+    agent_desc: "카탈로그는 schema.org 구조화 데이터(JSON-LD)로 발행됩니다. Claude 같은 AI 에이전트가 상품을 찾고, 비교하고, 구매할 때 읽는 형식입니다. 화면을 긁어오거나 추측할 필요가 없습니다. 이 패널은 입력하는 대로 실시간으로 바뀝니다.",
+    dl_json: "catalog.json 다운로드",
+    copy_json: "JSON 복사",
+    copied: "복사됨",
+    join_num: "05 — Setu 합류",
+    join_title: "초대를 신청하세요.",
+    join_intro: "Setu는 초대제로 시작하며, 웰니스부터 문을 엽니다. 위에 정보를 입력하신 뒤 초대를 신청하세요. 작업 중인 초안은 이 브라우저에 자동 저장되므로, 페이지를 닫았다가 다시 와도 이어서 쓸 수 있습니다.",
+    submit_btn: "초대 신청하기",
+    clear_btn: "초안 지우기",
+    draft_note: "초안은 이 브라우저(로컬스토리지)에 자동 저장됩니다. 어떤 데이터도 기기를 떠나지 않습니다.",
+    confirm_title: "초안이 저장됐습니다. 솔직한 부분을 알려드릴게요.",
+    confirm_body: "이 프로토타입에는 서버가 없습니다. 그래서 신청은 어디에도 전송되지 않았고, 브랜드와 상품, 사진은 이 기기의 브라우저에만 저장되어 있습니다. 실제 Setu에서는 이 버튼이 카탈로그 초안을 초대 심사팀에 보내며, 판매자의 승인 없이 상품이 판매되는 일은 없습니다.",
+    no_photo: "사진 없음",
+    no_photo_opt: "사진 없음",
+    photo_n: "사진",
+    delete_row: "삭제",
+    example_tag: "예시 — 지워주세요",
+    example_desc: "예시 행입니다. 지우고 내 상품을 추가하세요.",
+    untitled_brand: "내 브랜드",
+    untitled_product: "이름 없는 상품",
+    imported: "파일에서 상품 {n}개를 불러왔습니다. 아래 행을 확인하고, 열이 잘못 들어간 부분이 있으면 고쳐 주세요.",
+    import_none: "그 파일에서 상품 행을 찾지 못했습니다. 첫 번째 시트에 헤더 행이 있는지 확인하거나, 샘플 CSV 양식을 사용해 보세요.",
+    import_fail: "그 파일을 읽지 못했습니다. .xlsx, .xls, .csv 파일을 시도하거나, 표에 직접 입력해 주세요.",
+    xlsx_missing: "엑셀 라이브러리를 불러오지 못했습니다(CDN에 닿지 않을 수 있습니다). 지금은 스프레드시트 가져오기를 쓸 수 없습니다. 표에 직접 입력하거나, 다른 연결에서 다시 시도해 주세요.",
+    photos_skipped: "일부 사진은 브라우저 초안에 담기엔 너무 커서 저장되지 않았습니다.",
+    confirm_summary: "이 기기의 초안: {brand} — 상품 {n}개, 사진 {p}장.",
+    email_needed: "초대를 받을 분을 알 수 있도록, 위에 유효한 연락 이메일을 입력해 주세요."
+  }
+};
+function t(key) {
+  var d = I18N[state.lang] || I18N.en;
+  return d[key] || I18N.en[key] || key;
+}
+
+/* ================= state ================= */
+var LS_KEY = "setu-sell-draft-v1";
+var state = {
+  lang: "en",
+  brand: { nameEn: "", nameKr: "", category: "Wellness", country: "", email: "", storyEn: "", storyKr: "", website: "" },
+  products: [],
+  photos: [],
+  lastUpdated: new Date().toISOString()
+};
+function exampleProduct() {
+  return {
+    nameEn: "Handwoven Cotton Yoga Mat — Forest Green",
+    nameKr: "핸드우븐 코튼 요가매트 — 포레스트 그린",
+    price: 198000,
+    material: "100% cotton, handwoven",
+    size: "61 × 188 cm × 8 mm",
+    googleCategory: "Sporting Goods > Exercise & Fitness > Yoga > Yoga Mats",
+    desc: "Example row — delete it and add your own products.",
+    sku: "VS-FG-001", stock: "80", photo: -1, example: true
+  };
+}
+function blankProduct() {
+  return { nameEn: "", nameKr: "", price: "", material: "", size: "", googleCategory: "", desc: "", sku: "", stock: "", photo: -1, example: false };
+}
+state.products = [exampleProduct()];
+
+/* ================= helpers ================= */
+function $(id) { return document.getElementById(id); }
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+function fmtPrice(v) {
+  var n = parseFloat(String(v).replace(/[^0-9.]/g, ""));
+  if (isNaN(n) || n <= 0) return "";
+  return "₩" + Math.round(n).toLocaleString("ko-KR");
+}
+var saveTimer = null;
+function saveDraft() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function () {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+    } catch (e) {
+      /* storage full (usually photos) — retry without photos */
+      try {
+        var slim = { lang: state.lang, brand: state.brand, products: state.products, photos: [], lastUpdated: state.lastUpdated };
+        localStorage.setItem(LS_KEY, JSON.stringify(slim));
+        if (state.photos.length) setStatus(t("photos_skipped"), true);
+      } catch (e2) { /* draft simply will not persist */ }
+    }
+  }, 250);
+}
+function setStatus(msg, warn) {
+  var el = $("import-status");
+  el.textContent = msg || "";
+  el.className = "import-status" + (warn ? " warn" : "");
+}
+
+/* ================= catalog / JSON-LD ================= */
+function buildCatalog() {
+  var b = state.brand;
+  var brandName = b.nameEn || b.nameKr || "Untitled brand";
+  var items = [];
+  state.products.forEach(function (p, i) {
+    var name = p.nameEn || p.nameKr;
+    if (!name && !p.price && !p.desc) return;
+    var prod = {
+      "@type": "Product",
+      "name": name || "Untitled product",
+      "brand": { "@type": "Brand", "name": brandName }
+    };
+    if (p.nameEn && p.nameKr) prod.alternateName = p.nameKr;
+    if (p.sku) prod.sku = p.sku;
+    if (p.material) prod.material = p.material;
+    if (p.googleCategory) { prod.category = p.googleCategory; prod.google_product_category = p.googleCategory; }
+    if (state.lastUpdated) prod.dateModified = state.lastUpdated;
+    if (p.desc && !p.example) prod.description = p.desc;
+    if (p.size) prod.additionalProperty = [{ "@type": "PropertyValue", "name": "size", "value": p.size }];
+    var price = parseFloat(String(p.price).replace(/[^0-9.]/g, ""));
+    if (!isNaN(price) && price > 0) {
+      var offer = { "@type": "Offer", "priceCurrency": "KRW", "price": Math.round(price), "availability": "https://schema.org/InStock" };
+      if (p.stock !== "" && p.stock != null && !isNaN(parseFloat(p.stock)) && parseFloat(p.stock) <= 0) {
+        offer.availability = "https://schema.org/OutOfStock";
+      }
+      if (b.website) offer.url = b.website;
+      prod.offers = offer;
+    }
+    items.push({ "@type": "ListItem", "position": items.length + 1, "item": prod });
+  });
+  var org = { "@type": "Organization", "name": brandName };
+  if (b.nameKr && b.nameEn) org.alternateName = b.nameKr;
+  if (b.website) org.url = b.website;
+  if (b.email) org.email = b.email;
+  if (b.storyEn) org.description = b.storyEn;
+  if (b.country) org.address = { "@type": "PostalAddress", "addressCountry": b.country };
+  if (state.lastUpdated) org.dateModified = state.lastUpdated;
+  var list = { "@type": "ItemList", "name": brandName + " — Setu catalog", "itemListElement": items };
+  if (state.lastUpdated) list.dateModified = state.lastUpdated;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [org, list]
+  };
+}
+function buildExport() {
+  var cat = buildCatalog();
+  var out = { "lastUpdated": state.lastUpdated || new Date().toISOString() };
+  Object.keys(cat).forEach(function (k) { out[k] = cat[k]; });
+  return out;
+}
+function renderJSON() {
+  var catalog = buildCatalog();
+  var json = JSON.stringify(catalog, null, 2);
+  $("catalog-jsonld").textContent = json;
+  var preview = json.length > 2200 ? json.slice(0, 2200) + "\n  … (truncated — download for the full file)" : json;
+  $("json-preview").textContent = preview;
+  return json;
+}
+
+/* ================= freshness ================= */
+function freshnessInfo() {
+  var ts = state.lastUpdated ? Date.parse(state.lastUpdated) : NaN;
+  if (isNaN(ts)) ts = Date.now();
+  var days = Math.floor((Date.now() - ts) / 86400000);
+  var band = days <= 7 ? "fresh" : (days <= 30 ? "aging" : "stale");
+  return { ts: ts, days: days, band: band };
+}
+function freshDateStr(ts) {
+  return new Date(ts).toLocaleDateString(state.lang === "ko" ? "ko-KR" : "en-US",
+    { year: "numeric", month: "short", day: "numeric" });
+}
+function freshBadgeHTML() {
+  var f = freshnessInfo();
+  return '<span class="fresh-badge ' + f.band + '">' + esc(t("fresh_" + f.band)) + "</span>" +
+    "<span>" + esc(t("fresh_updated")) + " · " + esc(freshDateStr(f.ts)) + "</span>";
+}
+function renderFreshness() {
+  var badgeEl = $("agent-fresh-badge");
+  var dateEl = $("agent-fresh-date");
+  if (badgeEl && dateEl) {
+    var f = freshnessInfo();
+    badgeEl.innerHTML = '<span class="fresh-badge ' + f.band + '">' + esc(t("fresh_" + f.band)) + "</span>";
+    dateEl.textContent = t("fresh_updated") + " · " + freshDateStr(f.ts);
+  }
+}
+
+/* ================= catalog preview ================= */
+function renderPreview() {
+  var b = state.brand;
+  var name = b.nameEn || b.nameKr || t("untitled_brand");
+  var meta = [b.category, b.country].filter(Boolean).join(" · ").toUpperCase();
+  var story = b.storyEn || b.storyKr || "";
+  var html = '<div class="catalog-head"><p class="cmeta">' + esc(meta || "SETU CATALOG") + "</p>" +
+    '<p class="fresh-line">' + freshBadgeHTML() + "</p>" +
+    "<h3>" + esc(name) + "</h3>" +
+    (b.nameKr && b.nameEn ? '<p class="cmeta">' + esc(b.nameKr) + "</p>" : "") +
+    (story ? '<p class="cstory">' + esc(story) + "</p>" : "") + "</div>";
+  var visible = state.products.filter(function (p) { return p.nameEn || p.nameKr || p.price || p.desc; });
+  if (!visible.length) {
+    html += '<p class="empty-note">' + esc(t("untitled_product")) + " — " + esc(t("prod_title")) + "</p>";
+  } else {
+    html += '<div class="catalog-grid">';
+    state.products.forEach(function (p) {
+      if (!p.nameEn && !p.nameKr && !p.price && !p.desc) return;
+      var img = (p.photo >= 0 && state.photos[p.photo]) ? state.photos[p.photo] : null;
+      html += '<article class="cat-card"><div class="cimg">' +
+        (img ? '<img src="' + img + '" alt="">' : '<span class="noimg">' + esc(t("no_photo")) + "</span>") +
+        "</div>" +
+        "<h4>" + esc(p.nameEn || p.nameKr || t("untitled_product")) + "</h4>" +
+        (p.nameKr && p.nameEn ? '<p class="ckr">' + esc(p.nameKr) + "</p>" : "") +
+        (fmtPrice(p.price) ? '<p class="cprice">' + esc(fmtPrice(p.price)) + "</p>" : "") +
+        '<p class="cspec">' + [p.material, p.size].filter(Boolean).map(esc).join(" · ") + "</p>" +
+        (p.googleCategory ? '<p class="cspec">' + esc(p.googleCategory) + "</p>" : "") +
+        (p.desc && !p.example ? '<p class="cspec">' + esc(p.desc) + "</p>" : "") +
+        (p.example ? '<span class="example-tag">' + esc(t("example_tag")) + "</span>" : "") +
+        "</article>";
+    });
+    html += "</div>";
+  }
+  $("catalog-preview").innerHTML = html;
+}
+function refresh() {
+  state.lastUpdated = new Date().toISOString();
+  renderPreview(); renderJSON(); renderFreshness(); saveDraft();
+}
+
+/* ================= product table ================= */
+function photoOptions(selected) {
+  var html = '<option value="-1">' + esc(t("no_photo_opt")) + "</option>";
+  state.photos.forEach(function (_, i) {
+    html += '<option value="' + i + '"' + (selected === i ? " selected" : "") + ">" + esc(t("photo_n")) + " " + (i + 1) + "</option>";
+  });
+  return html;
+}
+function renderTable() {
+  var tbody = $("product-rows");
+  tbody.innerHTML = "";
+  state.products.forEach(function (p, idx) {
+    var tr = document.createElement("tr");
+    function cell(field, opts) {
+      opts = opts || {};
+      var td = document.createElement("td");
+      var el;
+      if (opts.area) { el = document.createElement("textarea"); }
+      else if (opts.select) { el = document.createElement("select"); el.innerHTML = photoOptions(p.photo); }
+      else { el = document.createElement("input"); el.type = opts.type || "text"; if (opts.cls) el.className = opts.cls; if (opts.list) el.setAttribute("list", opts.list); if (opts.ph) el.placeholder = opts.ph; }
+      if (!opts.select) el.value = p[field] == null ? "" : p[field];
+      el.setAttribute("aria-label", field);
+      el.addEventListener("input", function () {
+        if (field === "photo") p.photo = parseInt(el.value, 10);
+        else p[field] = el.value;
+        if (field !== "photo") p.example = p.example && field === "desc" ? p.example : false;
+        refresh();
+      });
+      el.addEventListener("change", function () {
+        if (field === "photo") { p.photo = parseInt(el.value, 10); refresh(); }
+      });
+      td.appendChild(el);
+      if (field === "nameEn" && p.example) {
+        var tag = document.createElement("span");
+        tag.className = "example-tag"; tag.textContent = t("example_tag");
+        td.appendChild(tag);
+      }
+      return td;
+    }
+    tr.appendChild(cell("nameEn"));
+    tr.appendChild(cell("nameKr"));
+    tr.appendChild(cell("price", { type: "text", cls: "price" }));
+    tr.appendChild(cell("material"));
+    tr.appendChild(cell("size"));
+    tr.appendChild(cell("googleCategory", { list: "gpc-list", ph: "Sporting Goods > … > Yoga Mats" }));
+    tr.appendChild(cell("photo", { select: true }));
+    tr.appendChild(cell("desc", { area: true }));
+    var tdDel = document.createElement("td");
+    var del = document.createElement("button");
+    del.type = "button"; del.className = "row-del"; del.textContent = t("delete_row");
+    del.addEventListener("click", function () {
+      state.products.splice(idx, 1);
+      renderTable(); refresh();
+    });
+    tdDel.appendChild(del);
+    tr.appendChild(tdDel);
+    tbody.appendChild(tr);
+  });
+}
+function refreshPhotoSelects() {
+  var selects = $("product-rows").querySelectorAll("td:nth-child(7) select");
+  selects.forEach(function (sel, i) {
+    var cur = state.products[i] ? state.products[i].photo : -1;
+    if (cur >= state.photos.length) { cur = -1; if (state.products[i]) state.products[i].photo = -1; }
+    sel.innerHTML = photoOptions(cur);
+    sel.value = String(cur);
+  });
+}
+
+/* ================= photos ================= */
+function renderPhotos() {
+  var grid = $("photos-grid");
+  grid.innerHTML = "";
+  state.photos.forEach(function (src, i) {
+    var wrap = document.createElement("div");
+    wrap.className = "photo-thumb";
+    var img = document.createElement("img"); img.src = src; img.alt = "";
+    var cap = document.createElement("span"); cap.textContent = t("photo_n") + " " + (i + 1);
+    var btn = document.createElement("button");
+    btn.type = "button"; btn.textContent = "×"; btn.setAttribute("aria-label", "Remove photo " + (i + 1));
+    btn.addEventListener("click", function () {
+      state.photos.splice(i, 1);
+      state.products.forEach(function (p) {
+        if (p.photo === i) p.photo = -1;
+        else if (p.photo > i) p.photo -= 1;
+      });
+      renderPhotos(); refreshPhotoSelects(); refresh();
+    });
+    wrap.appendChild(img); wrap.appendChild(btn); wrap.appendChild(cap);
+    grid.appendChild(wrap);
+  });
+  refreshPhotoSelects();
+}
+function handlePhotoFiles(files) {
+  Array.prototype.forEach.call(files, function (file) {
+    if (!/^image\//.test(file.type)) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      state.photos.push(reader.result);
+      renderPhotos(); refresh();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ================= spreadsheet import ================= */
+var HEADER_MAP = [
+  { field: "sku", keys: ["sku", "코드", "품번", "상품코드"] },
+  { field: "googleCategory", keys: ["google", "category", "카테고리", "분류"] },
+  { field: "nameKr", keys: ["상품명", "제품명", "한글", "한국어", "korean", "name_kr", "name kr", "(kr)", "이름"] },
+  { field: "nameEn", keys: ["name", "product", "title", "영문", "english", "(en)"] },
+  { field: "price", keys: ["price", "가격", "금액", "판매가", "원가"] },
+  { field: "material", keys: ["material", "소재", "재질"] },
+  { field: "size", keys: ["size", "사이즈", "규격", "치수", "dimension"] },
+  { field: "desc", keys: ["desc", "설명", "상세", "detail"] },
+  { field: "stock", keys: ["stock", "재고", "수량", "inventory"] }
+];
+function mapHeaders(headers) {
+  var mapping = {};
+  headers.forEach(function (h, col) {
+    var key = String(h || "").toLowerCase().trim();
+    if (!key) return;
+    for (var i = 0; i < HEADER_MAP.length; i++) {
+      var cand = HEADER_MAP[i];
+      if (mapping[cand.field] != null) continue;
+      for (var j = 0; j < cand.keys.length; j++) {
+        if (key.indexOf(cand.keys[j]) !== -1) { mapping[cand.field] = col; break; }
+      }
+    }
+  });
+  return mapping;
+}
+function rowsToProducts(rows) {
+  if (!rows || rows.length < 2) return [];
+  var mapping = mapHeaders(rows[0]);
+  var fields = Object.keys(mapping);
+  var startRow = 1;
+  if (!fields.length) {
+    /* no recognisable header — assume template order and treat row 1 as data */
+    mapping = { nameEn: 0, nameKr: 1, price: 2, material: 3, size: 4, desc: 5, sku: 6, stock: 7, googleCategory: 8 };
+    startRow = 0;
+  }
+  var out = [];
+  for (var r = startRow; r < rows.length; r++) {
+    var row = rows[r];
+    if (!row || row.every(function (c) { return c === "" || c == null; })) continue;
+    var p = blankProduct();
+    Object.keys(mapping).forEach(function (f) {
+      var v = row[mapping[f]];
+      if (v != null && v !== "") p[f] = (f === "price") ? String(v).replace(/[^0-9.]/g, "") : String(v).trim();
+    });
+    if (p.nameEn || p.nameKr) out.push(p);
+  }
+  return out;
+}
+function parseCsvText(text) {
+  var rows = [], row = [], cur = "", inQ = false;
+  for (var i = 0; i < text.length; i++) {
+    var c = text[i];
+    if (inQ) {
+      if (c === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else inQ = false; }
+      else cur += c;
+    } else if (c === '"') inQ = true;
+    else if (c === ",") { row.push(cur); cur = ""; }
+    else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(cur); cur = ""; rows.push(row); row = [];
+    } else cur += c;
+  }
+  if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+  return rows;
+}
+function importProducts(products) {
+  if (!products.length) { setStatus(t("import_none"), true); return; }
+  var onlyExample = state.products.length === 1 && state.products[0].example;
+  if (onlyExample) state.products = products;
+  else state.products = state.products.concat(products);
+  renderTable(); refresh();
+  setStatus(t("imported").replace("{n}", products.length), false);
+}
+function handleSheetFile(file) {
+  var isCsv = /\.csv$/i.test(file.name);
+  if (typeof XLSX === "undefined" && !isCsv) { setStatus(t("xlsx_missing"), true); return; }
+  var reader = new FileReader();
+  reader.onload = function () {
+    try {
+      var rows;
+      if (typeof XLSX !== "undefined") {
+        var wb = XLSX.read(new Uint8Array(reader.result), { type: "array" });
+        var ws = wb.Sheets[wb.SheetNames[0]];
+        rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+      } else {
+        rows = parseCsvText(new TextDecoder("utf-8").decode(reader.result));
+      }
+      importProducts(rowsToProducts(rows));
+    } catch (e) {
+      setStatus(t("import_fail"), true);
+    }
+  };
+  reader.onerror = function () { setStatus(t("import_fail"), true); };
+  reader.readAsArrayBuffer(file);
+}
+function downloadSampleCsv() {
+  var csv = "﻿Product Name (EN),Product Name (KR),Price (KRW),Material,Size,Description,SKU,Stock,Google Product Category\n" +
+    "Handwoven Cotton Yoga Mat — Forest Green,핸드우븐 코튼 요가매트 — 포레스트 그린,198000,\"100% cotton, handwoven\",61 × 188 cm × 8 mm,\"Handwoven on a traditional handloom, finished by hand.\",VS-FG-001,80,Sporting Goods > Exercise & Fitness > Yoga > Yoga Mats\n" +
+    "Handwoven Cotton Yoga Mat — Midnight Blue,핸드우븐 코튼 요가매트 — 미드나이트 블루,198000,\"100% cotton, handwoven\",61 × 188 cm × 8 mm,\"Handwoven on a traditional handloom, finished by hand.\",VS-MB-002,40,Sporting Goods > Exercise & Fitness > Yoga > Yoga Mats\n";
+  var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  triggerDownload(blob, "setu-products-template.csv");
+}
+function triggerDownload(blob, filename) {
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+}
+
+/* ================= i18n apply ================= */
+function applyLang() {
+  document.documentElement.lang = state.lang === "ko" ? "ko" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    var v = t(el.getAttribute("data-i18n"));
+    if (v) el.textContent = v;
+  });
+  $("lang-en").classList.toggle("active", state.lang === "en");
+  $("lang-ko").classList.toggle("active", state.lang === "ko");
+  renderTable(); renderPhotos(); refresh();
+}
+
+/* ================= events / init ================= */
+function fillBrandForm() {
+  document.querySelectorAll("[data-bind]").forEach(function (el) {
+    el.value = state.brand[el.getAttribute("data-bind")] || "";
+  });
+}
+function bindEvents() {
+  document.querySelectorAll("[data-bind]").forEach(function (el) {
+    el.addEventListener("input", function () {
+      state.brand[el.getAttribute("data-bind")] = el.value;
+      refresh();
+    });
+  });
+  $("lang-en").addEventListener("click", function () { state.lang = "en"; applyLang(); });
+  $("lang-ko").addEventListener("click", function () { state.lang = "ko"; applyLang(); });
+
+  var dz = $("dropzone"), sheetInput = $("sheet-input");
+  dz.addEventListener("click", function () { sheetInput.click(); });
+  dz.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sheetInput.click(); } });
+  ["dragenter", "dragover"].forEach(function (ev) {
+    dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add("drag"); });
+  });
+  ["dragleave", "drop"].forEach(function (ev) {
+    dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove("drag"); });
+  });
+  dz.addEventListener("drop", function (e) {
+    var f = e.dataTransfer.files && e.dataTransfer.files[0];
+    if (f) handleSheetFile(f);
+  });
+  sheetInput.addEventListener("change", function () {
+    if (sheetInput.files[0]) handleSheetFile(sheetInput.files[0]);
+    sheetInput.value = "";
+  });
+  $("sample-btn").addEventListener("click", downloadSampleCsv);
+  $("add-row-btn").addEventListener("click", function () {
+    state.products.push(blankProduct());
+    renderTable(); refresh();
+  });
+
+  var photoInput = $("photo-input");
+  $("photo-btn").addEventListener("click", function () { photoInput.click(); });
+  photoInput.addEventListener("change", function () {
+    if (photoInput.files.length) handlePhotoFiles(photoInput.files);
+    photoInput.value = "";
+  });
+
+  $("download-json").addEventListener("click", function () {
+    var json = JSON.stringify(buildExport(), null, 2);
+    triggerDownload(new Blob([json], { type: "application/json" }), "catalog.json");
+  });
+  $("copy-json").addEventListener("click", function () {
+    var json = JSON.stringify(buildExport(), null, 2);
+    function done() { $("copy-ok").classList.add("show"); setTimeout(function () { $("copy-ok").classList.remove("show"); }, 1800); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(json).then(done, function () { fallbackCopy(json); done(); });
+    } else { fallbackCopy(json); done(); }
+  });
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) { /* clipboard unavailable */ }
+    document.body.removeChild(ta);
+  }
+
+  $("clear-btn").addEventListener("click", function () {
+    try { localStorage.removeItem(LS_KEY); } catch (e) {}
+    state.brand = { nameEn: "", nameKr: "", category: "Wellness", country: "", email: "", storyEn: "", storyKr: "", website: "" };
+    state.products = [exampleProduct()];
+    state.photos = [];
+    fillBrandForm(); renderTable(); renderPhotos(); refresh();
+    $("confirm-box").classList.remove("show");
+    setStatus("", false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  $("submit-btn").addEventListener("click", function () {
+    var email = (state.brand.email || "").trim();
+    var emailEl = $("b-email");
+    if (!email || email.indexOf("@") === -1 || email.indexOf(".") === -1) {
+      emailEl.classList.add("invalid");
+      emailEl.focus();
+      setStatus(t("email_needed"), true);
+      document.querySelector("#brand").scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    emailEl.classList.remove("invalid");
+    var brandName = state.brand.nameEn || state.brand.nameKr || t("untitled_brand");
+    var count = state.products.filter(function (p) { return p.nameEn || p.nameKr; }).length;
+    $("confirm-summary").textContent = t("confirm_summary")
+      .replace("{brand}", brandName).replace("{n}", count).replace("{p}", state.photos.length);
+    $("confirm-box").classList.add("show");
+    saveDraft();
+    $("confirm-box").scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  var header = $("site-header");
+  window.addEventListener("scroll", function () {
+    header.classList.toggle("scrolled", window.scrollY > 40);
+  }, { passive: true });
+}
+function restoreDraft() {
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    var d = JSON.parse(raw);
+    if (d.brand) state.brand = Object.assign(state.brand, d.brand);
+    if (Array.isArray(d.products) && d.products.length) state.products = d.products;
+    if (Array.isArray(d.photos)) state.photos = d.photos;
+    if (d.lastUpdated) state.lastUpdated = d.lastUpdated;
+    if (d.lang === "ko" || d.lang === "en") state.lang = d.lang;
+  } catch (e) { /* corrupted draft — start fresh */ }
+}
+restoreDraft();
+bindEvents();
+fillBrandForm();
+applyLang();
+if (typeof XLSX === "undefined") {
+  /* CDN may still be loading or blocked; warn only inside the import area, without blocking the page */
+  setStatus(t("xlsx_missing"), true);
+}
+</script>
+</body>
+</html>

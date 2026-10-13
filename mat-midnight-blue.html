@@ -67,8 +67,10 @@
   table.spec { width: 100%; border-collapse: collapse; font-size: 14px; margin: 22px 0; }
   table.spec th { text-align: left; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #8a7d68; padding: 7px 8px; border-bottom: 1px solid #d8cfbe; width: 34%; }
   table.spec td { padding: 7px 8px; border-bottom: 1px solid #e4dcc9; vertical-align: top; }
-  .buy-now { display: inline-block; margin: 10px 0 6px; background: #1c1611; color: #f4efe4; padding: 16px 34px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; text-decoration: none; }
-  .buy-now:hover { opacity: .88; }
+  .buy-now { display: inline-flex; align-items: center; gap: 12px; margin: 10px 0 6px; background: #03C75A; color: #fff; padding: 14px 28px 14px 16px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; text-decoration: none; border-radius: 3px; text-align: left; }
+  .buy-now:hover { background: #02B351; }
+  .buy-now .naver-n { width: 26px; height: 26px; display: block; flex: none; }
+  .buy-now .buy-kr { display: block; margin-top: 4px; font-size: 12px; letter-spacing: .04em; text-transform: none; opacity: .92; }
   .buy-note { font-size: 13px; color: #6d6154; }
   .policy-link { font-size: 13px; color: #6d6154; }
 </style>
@@ -91,7 +93,7 @@
     <tr><th>Stock</th><td>In stock</td></tr>
     <tr><th>Rating</th><td>★ 5.0 · 13 reviews on Naver Smart Store</td></tr>
   </table>
-  <a class="buy-now" href="https://smartstore.naver.com/vedasera/products/13748710776" target="_blank" rel="noopener">Buy Now</a>
+  <a class="buy-now" href="https://smartstore.naver.com/vedasera/products/13748710776" target="_blank" rel="noopener"><svg class="naver-n" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="5" fill="#ffffff"/><path d="M7.2 17.4V6.6h2.5l4.6 6.6V6.6h2.5v10.8h-2.5l-4.6-6.6v6.6z" fill="#03C75A"/></svg><span class="buy-label">Shop on Naver<span class="buy-kr">네이버에서 구매하기</span></span></a>
   <p class="buy-note">Checkout and delivery are handled securely by our official Naver Smart Store.</p>
   <p class="policy-link">Shipping &amp; returns: <a href="returns.html">vedasera.com/returns</a> — free shipping; 7-day change-of-mind returns (₩8,000 return shipping).</p>
 </main>

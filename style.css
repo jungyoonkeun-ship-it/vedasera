@@ -167,6 +167,15 @@ h1,h2,h3,blockquote,.foot-mark{font-family:Georgia,"Times New Roman",serif;font-
 .collection-note{margin:9vh 0 0;font-size:15px;opacity:.7}
 .collection-note a{border-bottom:1px solid currentColor}
 
+/* ---------- naver buttons ---------- */
+.naver-n{display:block;flex:none}
+.site-header nav a.naver-shop{background:#03C75A;border-color:#03C75A;color:#fff;display:inline-flex;align-items:center;gap:9px}
+.site-header nav a.naver-shop:hover{background:#02B351;border-color:#02B351;color:#fff}
+.site-header nav a.naver-shop .naver-n{width:17px;height:17px}
+.product-card .cta.naver-cta{display:inline-flex;align-items:center;gap:10px;background:#03C75A;color:#fff;border-bottom:none;padding:12px 20px;border-radius:3px}
+.product-card:hover .cta.naver-cta{background:#02B351}
+.product-card .cta.naver-cta .naver-n{width:19px;height:19px}
+
 /* ---------- footer ---------- */
 footer{padding:14vh 6vw 46px;text-align:center;background:var(--bone)}
 .foot-mark{margin:0 0 34px}
