@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Handwoven Cotton Yoga Mat — Midnight Blue · Veda Sera</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>베다세라 핸드메이드 코튼 요가매트 8mm, 미드나이트블루 · Veda Sera</title>
 <meta name="description" content="Veda Sera handwoven cotton yoga mat in Midnight Blue. 100% cotton, handwoven, 61 × 188 cm × 8 mm. ₩198,000 with free shipping in Korea.">
 <link rel="icon" type="image/png" href="assets/logo-square.png">
 <link rel="stylesheet" href="style.css">
@@ -57,51 +57,172 @@
 }
 </script>
 <style>
-  .product { max-width: 880px; margin: 0 auto; padding: 120px 24px 80px; }
-  .product h1 { font-family: Georgia, serif; font-weight: 400; font-size: clamp(30px, 5vw, 44px); line-height: 1.15; }
-  .product .kr { color: #6d6154; margin: 0 0 12px; }
-  .product .hero-img { width: 100%; height: auto; display: block; margin: 28px 0; border: 1px solid #e4dcc9; }
-  .product .price { font-size: 24px; margin: 4px 0 2px; }
-  .product .price span { font-size: 13px; color: #6d6154; }
-  .product p.desc { color: #3d352b; line-height: 1.65; max-width: 62ch; }
-  table.spec { width: 100%; border-collapse: collapse; font-size: 14px; margin: 22px 0; }
-  table.spec th { text-align: left; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #8a7d68; padding: 7px 8px; border-bottom: 1px solid #d8cfbe; width: 34%; }
-  table.spec td { padding: 7px 8px; border-bottom: 1px solid #e4dcc9; vertical-align: top; }
-  .buy-now { display: inline-flex; align-items: center; gap: 12px; margin: 10px 0 6px; background: #03C75A; color: #fff; padding: 14px 28px 14px 16px; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; text-decoration: none; border-radius: 3px; text-align: left; }
-  .buy-now:hover { background: #02B351; }
-  .buy-now .naver-n { width: 26px; height: 26px; display: block; flex: none; }
-  .buy-now .buy-kr { display: block; margin-top: 4px; font-size: 12px; letter-spacing: .04em; text-transform: none; opacity: .92; }
-  .buy-note { font-size: 13px; color: #6d6154; }
-  .policy-link { font-size: 13px; color: #6d6154; }
+  :root { --green:#03C75A; --green-dark:#02B351; --ink:#1a1a1a; --muted:#767678; --line:#ececec; --soft:#f7f7f5; }
+  body { background:#fff; }
+  .p-wrap { max-width:860px; margin:0 auto; padding:96px 0 140px; font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif; color:var(--ink); }
+  .p-inner { padding:0 20px; }
+  .store-row { display:flex; justify-content:space-between; align-items:center; padding:14px 0 10px; font-size:13px; }
+  .store-row .store { font-weight:700; letter-spacing:.02em; }
+  .store-row .store small { display:block; font-weight:400; color:var(--muted); font-size:12px; margin-top:2px; }
+  .store-row .stars { color:var(--ink); font-size:13px; white-space:nowrap; }
+  .store-row .stars b { color:#f5a623; }
+  .gallery { position:relative; background:var(--soft); }
+  .gallery .main-img { width:100%; height:auto; display:block; aspect-ratio:1/1; object-fit:cover; }
+  .gallery .counter { position:absolute; right:12px; bottom:12px; background:rgba(0,0,0,.45); color:#fff; font-size:11px; padding:3px 9px; border-radius:999px; }
+  .thumbs { display:flex; gap:8px; padding:10px 20px 0; }
+  .thumbs button { width:56px; height:56px; padding:0; border:2px solid transparent; border-radius:6px; overflow:hidden; background:var(--soft); cursor:pointer; }
+  .thumbs button.active { border-color:var(--ink); }
+  .thumbs img { width:100%; height:100%; object-fit:cover; display:block; }
+  h1.p-title { font-size:22px; line-height:1.35; font-weight:700; margin:18px 0 4px; }
+  .p-sub { font-size:13px; color:var(--muted); margin:0 0 10px; }
+  .rating-row { font-size:13px; color:var(--muted); display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .rating-row .star { color:#f5a623; font-size:14px; }
+  .rating-row b { color:var(--ink); }
+  .price-row { display:flex; align-items:baseline; gap:10px; margin:14px 0 4px; }
+  .price-row .price { font-size:28px; font-weight:800; letter-spacing:-.01em; }
+  .price-row .ship-pill { background:#e8f9f0; color:#029a47; font-size:12px; font-weight:700; padding:3px 8px; border-radius:4px; }
+  .price-note { font-size:12px; color:var(--muted); margin:0 0 16px; }
+  .info-card { border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:6px 0; margin:0 0 18px; }
+  .info-card .row { display:flex; gap:14px; padding:8px 0; font-size:14px; line-height:1.5; }
+  .info-card .row .k { flex:0 0 44px; color:var(--muted); font-size:13px; padding-top:1px; }
+  .info-card .row a { color:var(--ink); }
+  .opt-label { font-size:13px; color:var(--muted); margin:16px 0 8px; }
+  .opts { display:flex; gap:8px; flex-wrap:wrap; }
+  .opt { display:inline-flex; align-items:center; gap:8px; border:1px solid #d9d9d9; border-radius:6px; padding:9px 14px; font-size:14px; color:var(--ink); text-decoration:none; background:#fff; }
+  .opt .sw { width:14px; height:14px; border-radius:50%; border:1px solid rgba(0,0,0,.12); }
+  .opt.selected { border-color:var(--ink); font-weight:700; box-shadow:inset 0 0 0 1px var(--ink); }
+  .opt.fixed { background:var(--soft); border-color:var(--line); }
+  .buy-now { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; min-height:56px; margin:20px 0 8px; background:var(--green); color:#fff; border:none; border-radius:8px; font-size:17px; font-weight:700; text-decoration:none; cursor:pointer; padding:0 18px; box-sizing:border-box; }
+  .buy-now:hover { background:var(--green-dark); }
+  .buy-now .naver-n { width:24px; height:24px; flex:none; }
+  .buy-now .buy-price { font-weight:400; font-size:14px; opacity:.92; }
+  .buy-note { font-size:12px; color:var(--muted); line-height:1.55; margin:0 0 8px; }
+  .section { border-top:8px solid var(--soft); margin-top:28px; padding:24px 0 4px; }
+  .section h2 { font-size:16px; font-weight:700; margin:0 0 14px; }
+  .section p.desc { font-size:14px; line-height:1.7; color:#333; margin:0 0 14px; }
+  .points { list-style:none; margin:0 0 8px; padding:0; }
+  .points li { font-size:14px; line-height:1.6; padding:7px 0 7px 22px; position:relative; border-bottom:1px solid var(--line); }
+  .points li::before { content:"✓"; position:absolute; left:2px; color:var(--green); font-weight:700; }
+  .points li b { display:block; font-size:14px; }
+  .points li span { color:var(--muted); font-size:13px; }
+  table.spec { width:100%; border-collapse:collapse; font-size:13px; }
+  table.spec th { text-align:left; color:var(--muted); font-weight:400; padding:8px 8px 8px 0; border-bottom:1px solid var(--line); width:32%; vertical-align:top; }
+  table.spec td { padding:8px 0; border-bottom:1px solid var(--line); }
+  .review-strip { display:flex; align-items:center; gap:14px; background:var(--soft); border-radius:8px; padding:16px; }
+  .review-strip .big { font-size:26px; font-weight:800; }
+  .review-strip .star { color:#f5a623; }
+  .review-strip p { margin:2px 0 0; font-size:13px; color:var(--muted); line-height:1.5; }
+  .p-foot { font-size:12px; color:var(--muted); line-height:1.6; margin-top:28px; }
+  .sticky-bar { position:fixed; left:0; right:0; bottom:0; z-index:60; background:#fff; border-top:1px solid var(--line); box-shadow:0 -4px 16px rgba(0,0,0,.06); padding:10px 16px calc(10px + env(safe-area-inset-bottom)); }
+  .sticky-inner { max-width:860px; margin:0 auto; display:flex; align-items:center; gap:14px; }
+  .sticky-price { flex:none; line-height:1.25; }
+  .sticky-price .p { font-size:17px; font-weight:800; display:block; }
+  .sticky-price .s { font-size:11px; color:#029a47; font-weight:700; }
+  .sticky-bar .buy-now { margin:0; flex:1; }
+  @media (max-width:560px) { .p-wrap { padding-top:84px; } h1.p-title { font-size:20px; } .price-row .price { font-size:26px; } }
 </style>
 </head>
 <body>
 <header class="site-header"><a href="index.html" class="logo"><img src="assets/logo.png" alt="Veda Sera"></a>
 <nav><a href="index.html#collection" class="shop-link">SHOP</a></nav></header>
-<main class="product">
-  <p class="kicker">Veda Sera · The Mat · VS-MB-002</p>
-  <h1>Handwoven Cotton Yoga Mat — Midnight Blue</h1>
-  <p class="kr">베다세라 핸드메이드 코튼 요가매트 8mm, 미드나이트블루</p>
-  <img class="hero-img" src="assets/naver-midnight-blue.png" alt="Veda Sera handwoven cotton yoga mat — Midnight Blue">
-  <p class="price">₩198,000 <span>· In stock · Free shipping in Korea</span></p>
-  <p class="desc">Handwoven on a traditional handloom, finished by hand. Made in a GOTS-certified factory (the mat itself is not individually certified). Anti-slip dotted back. Cotton instead of plastic: no chemical smell, washable, and woven to be lived with for years.</p>
-  <table class="spec">
-    <tr><th>Size</th><td>61 × 188 cm × 8 mm</td></tr>
-    <tr><th>Material</th><td>100% cotton, handwoven</td></tr>
-    <tr><th>Colour</th><td>Midnight Blue</td></tr>
-    <tr><th>Weight</th><td>1.7 kg (2.5 kg packed)</td></tr>
-    <tr><th>Stock</th><td>In stock</td></tr>
-    <tr><th>Rating</th><td>★ 5.0 · 13 reviews on Naver Smart Store</td></tr>
-  </table>
-  <a class="buy-now" href="https://smartstore.naver.com/vedasera/products/13748710776" target="_blank" rel="noopener"><svg class="naver-n" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="5" fill="#ffffff"/><path d="M7.2 17.4V6.6h2.5l4.6 6.6V6.6h2.5v10.8h-2.5l-4.6-6.6v6.6z" fill="#03C75A"/></svg><span class="buy-label">Shop on Naver<span class="buy-kr">네이버에서 구매하기</span></span></a>
-  <p class="buy-note">Checkout and delivery are handled securely by our official Naver Smart Store.</p>
-  <p class="policy-link">Shipping &amp; returns: <a href="returns.html">vedasera.com/returns</a> — free shipping; 7-day change-of-mind returns (₩8,000 return shipping).</p>
+<main class="p-wrap">
+  <div class="p-inner">
+    <div class="store-row">
+      <div class="store">베다세라 <small>VEDA SERA · 공식 상품 페이지</small></div>
+      <div class="stars"><b>★</b> 5.0 · 리뷰 13개</div>
+    </div>
+  </div>
+  <div class="gallery">
+    <img class="main-img" id="mainImg" src="assets/naver-midnight-blue.png" alt="Veda Sera handwoven cotton yoga mat — Midnight Blue">
+    <span class="counter" id="imgCounter">1 / 4</span>
+  </div>
+  <div class="thumbs" role="tablist" aria-label="상품 이미지">
+    <button class="active" data-src="assets/naver-midnight-blue.png" data-idx="1" aria-label="대표 이미지"><img src="assets/naver-midnight-blue.png" alt=""></button>
+    <button data-src="assets/weave.jpg" data-idx="2" aria-label="직조 질감"><img src="assets/weave.jpg" alt=""></button>
+    <button data-src="assets/lifestyle.jpg" data-idx="3" aria-label="사용 이미지"><img src="assets/lifestyle.jpg" alt=""></button>
+    <button data-src="assets/final.jpg" data-idx="4" aria-label="제품 이미지"><img src="assets/final.jpg" alt=""></button>
+  </div>
+  <div class="p-inner">
+    <h1 class="p-title">베다세라 핸드메이드 코튼 요가매트 8mm, 미드나이트블루</h1>
+    <p class="p-sub">Handwoven Cotton Yoga Mat — Midnight Blue · VEDA SERA</p>
+    <div class="rating-row"><span class="star">★★★★★</span><b>5.0</b><span>리뷰 13개 (네이버 스마트스토어)</span><span>·</span><span>17명 이상 구매</span></div>
+    <div class="price-row"><span class="price">198,000원</span><span class="ship-pill">무료배송</span></div>
+    <p class="price-note">재고 있음 · 결제와 배송은 베다세라 공식 네이버 스마트스토어에서 진행됩니다.</p>
+    <div class="info-card">
+      <div class="row"><span class="k">배송</span><span>무료배송 · CJ대한통운 · 평균 2일 이내 도착 (주문 후 2–3일 소요)</span></div>
+      <div class="row"><span class="k">반품</span><span>7일 이내 반품 가능 · 단순 변심 시 반품 배송비 8,000원 (<a href="returns.html">반품 안내</a>)</span></div>
+      <div class="row"><span class="k">결제</span><span>네이버페이로 안전하게 결제 · 네이버 스마트스토어에서 주문이 확정됩니다</span></div>
+    </div>
+    <p class="opt-label">색상</p>
+    <div class="opts">
+      <span class="opt selected"><span class="sw" style="background:#232c44"></span>미드나이트블루</span>
+      <a class="opt" href="mat-forest-green.html"><span class="sw" style="background:#2e4a38"></span>포레스트그린</a>
+    </div>
+    <p class="opt-label">두께</p>
+    <div class="opts"><span class="opt fixed">8mm</span></div>
+    <a class="buy-now" href="https://smartstore.naver.com/vedasera/products/13748710776" rel="noopener"><svg class="naver-n" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="5" fill="#ffffff"/><path d="M7.2 17.4V6.6h2.5l4.6 6.6V6.6h2.5v10.8h-2.5l-4.6-6.6v6.6z" fill="#03C75A"/></svg><span>네이버에서 구매하기</span><span class="buy-price">198,000원</span></a>
+    <p class="buy-note">버튼을 누르면 베다세라 공식 네이버 스마트스토어 상품 페이지로 이동합니다. 네이버 앱이 설치되어 있으면 앱에서 열립니다.</p>
+    <div class="section">
+      <h2>상세정보</h2>
+      <p class="desc">Handwoven on a traditional handloom, finished by hand. Made in a GOTS-certified factory (the mat itself is not individually certified). Anti-slip dotted back. Cotton instead of plastic: no chemical smell, washable, and woven to be lived with for years.</p>
+      <ul class="points">
+        <li><b>100% 코튼, 손으로 짠 직조</b><span>플라스틱 매트와 다른, 숨 쉬는 코튼의 질감</span></li>
+        <li><b>화학 냄새 없는 소재</b><span>새 매트 특유의 냄새 없이 바로 사용</span></li>
+        <li><b>미끄럼 방지 도트 뒷면</b><span>바닥에 닿는 면 전체에 도트 코팅으로 밀림 방지</span></li>
+        <li><b>세탁 가능</b><span>손세탁 후 자연 건조로 오래 관리</span></li>
+      </ul>
+    </div>
+    <div class="section">
+      <h2>상품 정보</h2>
+      <table class="spec">
+        <tr><th>사이즈</th><td>61 × 188 cm × 8 mm</td></tr>
+        <tr><th>소재</th><td>100% cotton, handwoven</td></tr>
+        <tr><th>색상</th><td>Midnight Blue (미드나이트블루)</td></tr>
+        <tr><th>무게</th><td>1.7 kg (포장 시 2.5 kg)</td></tr>
+        <tr><th>제조사 / 원산지</th><td>베다세라 / 인도산</td></tr>
+        <tr><th>품번</th><td>881225BC (VS-MB-002)</td></tr>
+        <tr><th>재고</th><td>있음</td></tr>
+        <tr><th>평점</th><td>★ 5.0 · 네이버 스마트스토어 리뷰 13개</td></tr>
+      </table>
+    </div>
+    <div class="section">
+      <h2>리뷰</h2>
+      <div class="review-strip">
+        <span class="big">5.0</span>
+        <div><span class="star">★★★★★</span><p>네이버 스마트스토어 리뷰 13개 기준 · 4점 이상 리뷰가 100%예요.<br>실제 리뷰는 구매 페이지에서 확인할 수 있습니다.</p></div>
+      </div>
+    </div>
+    <a class="buy-now" href="https://smartstore.naver.com/vedasera/products/13748710776" rel="noopener"><svg class="naver-n" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="5" fill="#ffffff"/><path d="M7.2 17.4V6.6h2.5l4.6 6.6V6.6h2.5v10.8h-2.5l-4.6-6.6v6.6z" fill="#03C75A"/></svg><span>네이버에서 구매하기</span><span class="buy-price">198,000원</span></a>
+    <p class="p-foot">주식회사 베다세라 · 이 페이지는 베다세라 공식 상품 안내 페이지이며, 주문·결제·배송·반품은 네이버 스마트스토어에서 처리됩니다. Shipping &amp; returns: <a href="returns.html">vedasera.com/returns</a></p>
+  </div>
 </main>
+<div class="sticky-bar">
+  <div class="sticky-inner">
+    <div class="sticky-price"><span class="p">198,000원</span><span class="s">무료배송</span></div>
+    <a class="buy-now" href="https://smartstore.naver.com/vedasera/products/13748710776" rel="noopener"><svg class="naver-n" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><rect width="24" height="24" rx="5" fill="#ffffff"/><path d="M7.2 17.4V6.6h2.5l4.6 6.6V6.6h2.5v10.8h-2.5l-4.6-6.6v6.6z" fill="#03C75A"/></svg><span>구매하기</span></a>
+  </div>
+</div>
 <script>
+  /* Gallery — thumbnail tap swaps the main image (same pattern as the
+     Naver product gallery). */
+  (function () {
+    var main = document.getElementById("mainImg");
+    var counter = document.getElementById("imgCounter");
+    var btns = document.querySelectorAll(".thumbs button");
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        btns.forEach(function (x) { x.classList.remove("active"); });
+        b.classList.add("active");
+        main.src = b.getAttribute("data-src");
+        counter.textContent = b.getAttribute("data-idx") + " / 4";
+      });
+    });
+  })();
+
   /* Meta Pixel — product events for this page (feed ID VS-MB-002).
-     ViewContent fires on load; InitiateCheckout fires on the Buy Now
-     click, just before the Naver redirect. A Purchase event is NOT
-     fired — checkout completes on Naver, off this site. */
+     ViewContent fires on load; InitiateCheckout fires on any Buy button
+     tap, just before the Naver handoff. No Purchase event — checkout
+     completes on Naver, off this site. */
   if (window.fbq) {
     fbq("track", "ViewContent", {
       content_ids: ["VS-MB-002"],
@@ -110,20 +231,45 @@
       currency: "KRW"
     });
   }
-  var buyBtn = document.querySelector(".buy-now");
-  if (buyBtn) {
-    buyBtn.addEventListener("click", function () {
-      if (!window.fbq) return;
-      try {
-        fbq("track", "InitiateCheckout", {
-          content_ids: ["VS-MB-002"],
-          content_type: "product",
-          value: 198000,
-          currency: "KRW"
-        });
-      } catch (e) { /* pixel is best-effort */ }
-    });
+
+  /* Naver handoff — as seamless as the platform allows:
+     - The link itself is the official Smart Store URL, so with no JS,
+       in an in-app browser, or on desktop it simply opens the store.
+     - On Android Chrome (not an in-app webview), an intent link hands
+       the same URL to the Naver app when installed, with the web URL
+       as the automatic fallback when it is not.
+     - iOS and in-app browsers keep the plain https navigation, which
+       is the path Naver's own universal links handle. */
+  var NAVER_URL = "https://smartstore.naver.com/vedasera/products/13748710776";
+  function openNaver() {
+    var ua = navigator.userAgent || "";
+    var isAndroid = /Android/i.test(ua);
+    var inApp = /(Instagram|FBAN|FBAV|FB_IAB|KAKAOTALK|Line\/|NAVER\/)/i.test(ua);
+    if (isAndroid && !inApp) {
+      window.location.href =
+        "intent://smartstore.naver.com/vedasera/products/13748710776" +
+        "#Intent;scheme=https;package=com.nhn.android.search;S.browser_fallback_url=" +
+        encodeURIComponent(NAVER_URL) + ";end";
+    } else {
+      window.location.href = NAVER_URL;
+    }
   }
+  document.querySelectorAll(".buy-now").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (window.fbq) {
+        try {
+          fbq("track", "InitiateCheckout", {
+            content_ids: ["VS-MB-002"],
+            content_type: "product",
+            value: 198000,
+            currency: "KRW"
+          });
+        } catch (err) { /* pixel is best-effort */ }
+      }
+      openNaver();
+    });
+  });
 </script>
 </body>
 </html>
